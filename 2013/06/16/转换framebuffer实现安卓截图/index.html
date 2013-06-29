@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>转换framebuffer实现安卓截图 | 绅士的幻想乡</title>
+  <meta name="author" content="GentlemanMod">
+  
+  <meta name="description" content="编译出了RECOVERY肯定需要截图分享的啦,可是又不能通过DDMS截图~那就只好通过提取手机的fb0文件来实现截图.首先你需要ADB~ 嗯,这个都没有的话你就别看下去了...还需要ffmpeg,我们需要使用他进行转码,不转码你怎么看图片啊就犹如AV一样,不转码肿么放手机上看啊,魂淡!!!咳咳,扯远了">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="转换framebuffer实现安卓截图"/>
+  <meta property="og:site_name" content="绅士的幻想乡"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="stylesheet" type="text/css" href="/css/haruna.css">
+  <link rel="alternate" href="/atom.xml" title="绅士的幻想乡" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+  <script>var path = "http://gentlemanmod.github.io";var imagewidth = '240';var imageheight = '240';</script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/haruna.js" charset="gb2312" ></script>
+  <script>createFace("http://gentlemanmod.github.io/img/skin/ikamusume/1.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/2.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/3.gif");</script>
+  <script>var talkself_user = [ ["喔耶～加油！加油！加油！加油！", "2"],["主人现在老是弃旧迎新，朋友们都好伤心啊..", "3"],["对本博客有什么建议可以留言哦~", "2"],["哇啊啊啊啊啊啊啊啊啊...", "3"],["目前博客托管在github上，速度应该不错吧？", "1"],["一个域名居然要50多大洋..", "3"] ];var talkself_arr = talkself_arr.concat(talkself_user);</script>
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">绅士的幻想乡</a></h1>
+  <h2><a href="/"></a></h2>
+  <h2><a href="/"><script>hitokoto()</script></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li><a href="/atom.xml">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-16T15:30:55.000Z"><a href="/2013/06/16/转换framebuffer实现安卓截图/">6月 16 2013</a></time>
+      
+      
+  
+    <h1 class="title">转换framebuffer实现安卓截图</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>编译出了RECOVERY肯定需要截图分享的啦,可是又不能通过DDMS截图~<br>那就只好通过提取手机的fb0文件来实现截图.<br>首先你需要ADB~ 嗯,这个都没有的话你就别看下去了...<br>还需要ffmpeg,我们需要使用他进行转码,不转码你怎么看图片啊<br>就犹如AV一样,不转码肿么放手机上看啊,魂淡!!!咳咳,扯远了  </p>
+<a name="more"></a>
+
+<p>首先我们把fb0文件提取出来先  </p>
+<pre><code><figure class="highlight"><pre><span class="title">adb</span> pull /dev/graphics/fb0 fb0.raw
+</pre></figure></code></pre>
+<p>然后通过ffmpeg进行转码,那个&quot;480x800&quot;是你的手机分辨率,记得修改啊  </p>
+<pre><code><figure class="highlight"><pre><span class="comment">ffmpeg</span> <span class="literal">-</span><span class="comment">vframes</span> <span class="comment">1</span> <span class="literal">-</span><span class="comment">vcodec</span> <span class="comment">rawvideo</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">rawvideo</span> <span class="literal">-</span><span class="comment">pix_fmt</span> <span class="comment">rgb565le</span> <span class="literal">-</span><span class="comment">s</span> <span class="comment">480x800</span> <span class="literal">-</span><span class="comment">i</span> <span class="comment">fb0</span>.<span class="comment">raw</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">image2</span> <span class="literal">-</span><span class="comment">vcodec</span> <span class="comment">png</span> <span class="comment">fb0</span>.<span class="comment">png
+</pre></figure></code></pre>
+<p>嗯,然后你会发现在当前目录下生产了一个fb0.png文件,那就是截图啦~<br>此方法你也可以在开机状态下使用哦,下面看看我的截图效果吧~  </p>
+<p><img src="/images/recovery.png" alt="Recovery"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Android/">Android</a>
+  </div>
+
+        <!--
+
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+-->
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"gentlemanmod"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:gentlemanmod.github.io/">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android/" style="font-size: 18.00px;">Android</a><a href="/tags/Linux/" style="font-size: 12.00px;">Linux</a><a href="/tags/MTK/" style="font-size: 10.00px;">MTK</a><a href="/tags/hexo/" style="font-size: 16.00px;">hexo</a><a href="/tags/反编译/" style="font-size: 14.00px;">反编译</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/06/29/任务管理界面添加显示ram信息/">任务管理界面添加显示RAM信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/mtk机子修复分区信息/">MTK机子修复分区信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/16/转换framebuffer实现安卓截图/">转换framebuffer实现安卓截图</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/15/android去除屏幕红框/">Android去除屏幕红框</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/09/qualcomm-device使用ion-memory-manager取代pmem/">Qualcomm device使用ION memory manager取代PMEM</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">联系我</h3>
+  <ul class="entry">
+      <li>Gmail: GentlemanMod@gmail.com</li>
+      <li>QQ: 2292421148</li>
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">朋友们</h3>
+  <ul class="entry">
+      <li>
+        <a href="http://flau.me" target="_blank">芦苇丛的鹅蛋</a>
+      </li>
+  </ul>
+</div>
+
+  <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2532112564&verifier=ff61d30e&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 GentlemanMod
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

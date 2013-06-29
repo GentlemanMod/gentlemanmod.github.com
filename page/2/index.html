@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第 2 页 | 绅士的幻想乡</title>
+  <meta name="author" content="GentlemanMod">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="绅士的幻想乡"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="stylesheet" type="text/css" href="/css/haruna.css">
+  <link rel="alternate" href="/atom.xml" title="绅士的幻想乡" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+  <script>var path = "http://gentlemanmod.github.io";var imagewidth = '240';var imageheight = '240';</script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/haruna.js" charset="gb2312" ></script>
+  <script>createFace("http://gentlemanmod.github.io/img/skin/ikamusume/1.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/2.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/3.gif");</script>
+  <script>var talkself_user = [ ["喔耶～加油！加油！加油！加油！", "2"],["主人现在老是弃旧迎新，朋友们都好伤心啊..", "3"],["对本博客有什么建议可以留言哦~", "2"],["哇啊啊啊啊啊啊啊啊啊...", "3"],["目前博客托管在github上，速度应该不错吧？", "1"],["一个域名居然要50多大洋..", "3"] ];var talkself_arr = talkself_arr.concat(talkself_user);</script>
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">绅士的幻想乡</a></h1>
+  <h2><a href="/"></a></h2>
+  <h2><a href="/"><script>hitokoto()</script></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li><a href="/atom.xml">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-08T12:35:26.000Z"><a href="/2013/06/08/修改自动亮度下背光和按键的亮度/">6月 8 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/06/08/修改自动亮度下背光和按键的亮度/">修改自动亮度下背光和按键的亮度</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>乐蛙又出现BUG了,高通拼包的BUG就是多!设置自动亮度后,按住光感器,屏幕会一片黑..<br>第一感觉就是去看Log....Log如下~  </p>
+<pre><code><figure class="highlight"><pre>E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">34</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">33</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">32</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">31</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">32</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">30</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">29</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">28</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">26</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">23</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">19</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">16</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">12</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">10</span>
+</pre></figure></code></pre>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/06/08/修改自动亮度下背光和按键的亮度/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-07T15:45:36.000Z"><a href="/2013/06/07/android触摸屏配置调试/">6月 7 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/06/07/android触摸屏配置调试/">Android触摸屏配置调试</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>前几天搞乐蛙时,进入后是鼠标模式,好坑爹的模式有木有~~<br>但是大蛋给出了解决方法,我不怕不怕啦~让我们向大牛致敬!!!  </p>
+<p>首先输入Command查看你的input配置~  </p>
+<pre><code><figure class="highlight"><pre><span class="title">adb</span> shell dumpsys input
+</pre></figure></code></pre>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/06/07/android触摸屏配置调试/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-07T15:28:57.000Z"><a href="/2013/06/07/android无法连接adb的解决方法/">6月 7 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/06/07/android无法连接adb的解决方法/">Android无法连接adb的解决方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天在折腾乐蛙时发现无法链接ADB了,但是手机却显示USB调试模式!<br>然后想起了大蛋曾经告诉我CM的解决方法,于是你懂得,俺差点就把菊花给卖了呢(/Д`)~ﾟ｡  </p>
+<pre><code><figure class="highlight"><pre><span class="title">adb</span> shell rm -r /<span class="typedef"><span class="keyword">data</span>/property</span>
+</pre></figure></code></pre>
+<p>进REC干掉这个目录后,CM就可以正常连接了,可是尼玛我的乐蛙肿么还是不行啊!!!<br>我的菊花白卖了啊!!!!魂淡!!!! （╯‵□′）╯︵┴─┴ 
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/06/07/android无法连接adb的解决方法/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-07T07:44:40.000Z"><a href="/2013/06/07/编译cm时优化错误的解决方法/">6月 7 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/06/07/编译cm时优化错误的解决方法/">编译CM时优化错误的解决方法</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>编译CM到最后一步是出现优化错误,虽然可以正常使用,但是对于我这种有强迫症的孩子肿么办!!!  </p>
+<pre><code><figure class="highlight"><pre><span class="title">Please</span> install pngcrush, optipng, or pngout
+</pre></figure></code></pre>
+<p>从字面上就看出了缺少软件包,那就安装吧~<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/06/07/编译cm时优化错误的解决方法/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-05T12:15:44.000Z"><a href="/2013/06/05/archlinux升级filesystem/">6月 5 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/06/05/archlinux升级filesystem/">Archlinux升级filesystem</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天心血来潮,开滚Arch!!结果filesystem滚挂了,这尼玛闹哪样（╯‵□′）╯︵┴─┴  </p>
+<pre><code><figure class="highlight"><pre>错误：无法提交处理 (有冲突的文件)
+<span class="title">filesystem</span>: 文件系统中已存在 /bin 
+<span class="title">filesystem</span>: 文件系统中已存在 /sbin 
+<span class="title">filesystem</span>: 文件系统中已存在 /usr/sbin 
+发生错误，没有软件包被更新。
+</pre></figure></code></pre>
+<p>套用某人的一句话:&quot;滚挂是一个非常高深的课题，简单地说就是喜大普奔，是一件让他人很愉快的事情。&quot;<br>滚挂后我才想起arch那帮人说filesystem升级了!!!好吧,这回还真是喜大普奔了~  </p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/06/05/archlinux升级filesystem/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/" class="alignleft prev">上一页</a>
+  
+  
+    <a href="/page/3/" class="alignright next">下一页</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:gentlemanmod.github.io/">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android/" style="font-size: 18.00px;">Android</a><a href="/tags/Linux/" style="font-size: 12.00px;">Linux</a><a href="/tags/MTK/" style="font-size: 10.00px;">MTK</a><a href="/tags/hexo/" style="font-size: 16.00px;">hexo</a><a href="/tags/反编译/" style="font-size: 14.00px;">反编译</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/06/29/任务管理界面添加显示ram信息/">任务管理界面添加显示RAM信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/mtk机子修复分区信息/">MTK机子修复分区信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/16/转换framebuffer实现安卓截图/">转换framebuffer实现安卓截图</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/15/android去除屏幕红框/">Android去除屏幕红框</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/09/qualcomm-device使用ion-memory-manager取代pmem/">Qualcomm device使用ION memory manager取代PMEM</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">联系我</h3>
+  <ul class="entry">
+      <li>Gmail: GentlemanMod@gmail.com</li>
+      <li>QQ: 2292421148</li>
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">朋友们</h3>
+  <ul class="entry">
+      <li>
+        <a href="http://flau.me" target="_blank">芦苇丛的鹅蛋</a>
+      </li>
+  </ul>
+</div>
+
+  <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2532112564&verifier=ff61d30e&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 GentlemanMod
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

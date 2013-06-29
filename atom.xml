@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[绅士的幻想乡]]></title>
+  <link href="http://gentlemanmod.github.io//atom.xml" rel="self"/>
+  <link href="http://gentlemanmod.github.io/"/>
+  <updated>2013-06-29T13:09:48.293Z</updated>
+  <id>http://gentlemanmod.github.io//</id>
+  <author>
+    <name><![CDATA[GentlemanMod]]></name>
+    <email><![CDATA[GentlemanMod@gmail.com]]></email>
+  </author>
+  <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[任务管理界面添加显示RAM信息]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/29/任务管理界面添加显示ram信息/"/>
+    <id>http://gentlemanmod.github.io//2013/06/29/任务管理界面添加显示ram信息/</id>
+    <published>2013-06-29T12:33:37.000Z</published>
+    <updated>2013-06-29T13:04:45.000Z</updated>
+    <content type="html"><![CDATA[<p>显示RAM信息的核心代码是大蛋的,我只不过是整理下教程而已!<br>大蛋应该不会介意的吧,首先你需要apktool和SystemUI.apk,framework-res.apk<br>然后开始加载框架和反编译...  </p>
+<a name="more"></a>
+
+<pre><code><figure class="highlight"><pre><span class="variable">$ </span>apktool <span class="keyword">if</span> framework-res.apk
+<span class="variable">$ </span>apktool d <span class="constant">SystemUI</span>.apk
+</pre></figure></code></pre>
+<p>然后把附件里的东西直接解压进去,<a href="https://docs.google.com/file/d/0B6L_eKOtMWLVaFNXMk5DeHk0b28/edit">附件点我</a><br>然后添加ID,打开res/values/public.xml,增加下面的ID  </p>
+<pre><code><figure class="highlight"><pre><span class="title">memory_info_total</span>
+<span class="title">memory_info_free</span>
+<span class="title">memory_info_buffers</span>
+<span class="title">memory_info_cached</span>
+<span class="title">memory_info_swapcached</span>
+</pre></figure></code></pre>
+<p>然后也在res/values/ids.xml也加入上面的ID<br>最后修改smali/com/android/systemui/recent/MemoryInfo.smali里的ID为你增加的对应ID即可!<br>最后在布局文件res/layout-land/status_bar_recent_panel.xml加入以下内容  </p>
+<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">com.android.systemui.recent.MemoryInfoLayout</span> <span class="attribute">android:gravity</span>=<span class="value">"center_vertical"</span> <span class="attribute">android:layout_gravity</span>=<span class="value">"bottom"</span> <span class="attribute">android:clickable</span>=<span class="value">"true"</span> <span class="attribute">android:layout_width</span>=<span class="value">"fill_parent"</span> <span class="attribute">android:layout_height</span>=<span class="value">"30.0dip"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">View</span> <span class="attribute">android:visibility</span>=<span class="value">"invisible"</span> <span class="attribute">android:layout_width</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"fill_parent"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#ff04ff11"</span> <span class="attribute">android:layout_width</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"12.0dip"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_total"</span> <span class="attribute">android:paddingLeft</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:paddingRight</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#ff061ef2"</span> <span class="attribute">android:layout_width</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"12.0dip"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_free"</span> <span class="attribute">android:paddingLeft</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:paddingRight</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#fff901e4"</span> <span class="attribute">android:layout_width</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"12.0dip"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_buffers"</span> <span class="attribute">android:paddingLeft</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:paddingRight</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#fffae602"</span> <span class="attribute">android:layout_width</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"12.0dip"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_cached"</span> <span class="attribute">android:paddingLeft</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:paddingRight</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#fffd1505"</span> <span class="attribute">android:layout_width</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"12.0dip"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_swapcached"</span> <span class="attribute">android:paddingLeft</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+<span class="tag">&lt;/<span class="title">com.android.systemui.recent.MemoryInfoLayout</span>&gt;</span>
+</pre></figure></code></pre>
+<p>最后在res/layout/status_bar_recent_panel.xml或者res/layout-port/status_bar_recent_panel.xml加入以下内容  </p>
+<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">com.android.systemui.recent.MemoryInfoLayout</span> <span class="attribute">android:gravity</span>=<span class="value">"center_vertical"</span> <span class="attribute">android:layout_gravity</span>=<span class="value">"bottom"</span> <span class="attribute">android:clickable</span>=<span class="value">"true"</span> <span class="attribute">android:layout_width</span>=<span class="value">"fill_parent"</span> <span class="attribute">android:layout_height</span>=<span class="value">"30.0dip"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">View</span> <span class="attribute">android:visibility</span>=<span class="value">"invisible"</span> <span class="attribute">android:layout_width</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"fill_parent"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#ff04ff11"</span> <span class="attribute">android:layout_width</span>=<span class="value">"10.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"10.0dip"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"10.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_total"</span> <span class="attribute">android:paddingLeft</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:paddingRight</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#ff061ef2"</span> <span class="attribute">android:layout_width</span>=<span class="value">"10.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"10.0dip"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"10.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_free"</span> <span class="attribute">android:paddingLeft</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:paddingRight</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"10.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_buffers"</span> <span class="attribute">android:visibility</span>=<span class="value">"gone"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#fffae602"</span> <span class="attribute">android:layout_width</span>=<span class="value">"10.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"10.0dip"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"10.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_cached"</span> <span class="attribute">android:paddingLeft</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">TextView</span> <span class="attribute">android:textSize</span>=<span class="value">"10.0dip"</span> <span class="attribute">android:textColor</span>=<span class="value">"@color/status_bar_recents_app_label_color"</span> <span class="attribute">android:ellipsize</span>=<span class="value">"marquee"</span> <span class="attribute">android:id</span>=<span class="value">"@id/memory_info_swapcached"</span> <span class="attribute">android:visibility</span>=<span class="value">"gone"</span> <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span> <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span> /&gt;</span>
+<span class="tag">&lt;/<span class="title">com.android.systemui.recent.MemoryInfoLayout</span>&gt;</span>
+</pre></figure></code></pre>
+<p>反编译签名替换系统文件即可,前提是需要你的APK全部重签过!</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+    <category scheme="http://gentlemanmod.github.io//tags/反编译/" term="反编译"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[MTK机子修复分区信息]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/29/mtk机子修复分区信息/"/>
+    <id>http://gentlemanmod.github.io//2013/06/29/mtk机子修复分区信息/</id>
+    <published>2013-06-29T12:20:09.000Z</published>
+    <updated>2013-06-29T12:58:24.000Z</updated>
+    <content type="html"><![CDATA[<p>这是前一个星期的事了,最近一直懒得写博客~<br>此事是由于我误刷了内核,然后导致分区信息出错...<br>内置存储挂载不上,也找不到内置存储的分区!<br>如果不是star的帮助.估计俺的爪机就要返厂了!!  </p>
+<a name="more"></a>
+
+<p>接下来说下我的修复方法,可能会对你们有帮助<br>首先叫别人从没有问题的机子中提取ebr文件.<br>提取命令(仅适用MTK机子,并且需要ROOT):  </p>
+<pre><code><figure class="highlight"><pre><span class="variable">$ </span>adb shell
+<span class="variable">$ </span>su
+<span class="comment"># dd if=/dev/ebr1 /sdcard/ebr1</span>
+<span class="comment"># dd if=/dev/ebr2 /sdcard/ebr2</span>
+<span class="comment"># exit</span>
+<span class="variable">$ </span>exit
+<span class="variable">$ </span>adb pull /sdcard/ebr1
+<span class="variable">$ </span>adb pull /sdcard/ebr2
+</pre></figure></code></pre>
+<p>这样你的目录下就会出现两个文件,分别是ebr1和ebr2<br>提取出来了,那该怎么刷回去呢??原理就是反过来!  </p>
+<pre><code><figure class="highlight"><pre><span class="variable">$ </span>adb push ebr1 /data/local/tmp/
+<span class="variable">$ </span>adb push ebr2 /data/local/tmp/
+<span class="variable">$ </span>adb shell su -c <span class="string">"dd if=/data/local/tmp/ebr1 of=/dev/ebr1"</span>
+<span class="variable">$ </span>adb shell su -c <span class="string">"dd if=/data/local/tmp/ebr2 of=/dev/ebr2"</span>
+<span class="variable">$ </span>adb reboot
+</pre></figure></code></pre>
+<p>重启后内置存储就恢复了!如果你们分区有问题可以试试这个办法!</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+    <category scheme="http://gentlemanmod.github.io//tags/MTK/" term="MTK"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[转换framebuffer实现安卓截图]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/16/转换framebuffer实现安卓截图/"/>
+    <id>http://gentlemanmod.github.io//2013/06/16/转换framebuffer实现安卓截图/</id>
+    <published>2013-06-16T15:30:55.000Z</published>
+    <updated>2013-06-16T15:40:22.000Z</updated>
+    <content type="html"><![CDATA[<p>编译出了RECOVERY肯定需要截图分享的啦,可是又不能通过DDMS截图~<br>那就只好通过提取手机的fb0文件来实现截图.<br>首先你需要ADB~ 嗯,这个都没有的话你就别看下去了...<br>还需要ffmpeg,我们需要使用他进行转码,不转码你怎么看图片啊<br>就犹如AV一样,不转码肿么放手机上看啊,魂淡!!!咳咳,扯远了  </p>
+<a name="more"></a>
+
+<p>首先我们把fb0文件提取出来先  </p>
+<pre><code><figure class="highlight"><pre><span class="title">adb</span> pull /dev/graphics/fb0 fb0.raw
+</pre></figure></code></pre>
+<p>然后通过ffmpeg进行转码,那个&quot;480x800&quot;是你的手机分辨率,记得修改啊  </p>
+<pre><code><figure class="highlight"><pre><span class="comment">ffmpeg</span> <span class="literal">-</span><span class="comment">vframes</span> <span class="comment">1</span> <span class="literal">-</span><span class="comment">vcodec</span> <span class="comment">rawvideo</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">rawvideo</span> <span class="literal">-</span><span class="comment">pix_fmt</span> <span class="comment">rgb565le</span> <span class="literal">-</span><span class="comment">s</span> <span class="comment">480x800</span> <span class="literal">-</span><span class="comment">i</span> <span class="comment">fb0</span>.<span class="comment">raw</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">image2</span> <span class="literal">-</span><span class="comment">vcodec</span> <span class="comment">png</span> <span class="comment">fb0</span>.<span class="comment">png
+</pre></figure></code></pre>
+<p>嗯,然后你会发现在当前目录下生产了一个fb0.png文件,那就是截图啦~<br>此方法你也可以在开机状态下使用哦,下面看看我的截图效果吧~  </p>
+<p><img src="/images/recovery.png" alt="Recovery"></p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[Android去除屏幕红框]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/15/android去除屏幕红框/"/>
+    <id>http://gentlemanmod.github.io//2013/06/15/android去除屏幕红框/</id>
+    <published>2013-06-15T13:00:09.000Z</published>
+    <updated>2013-06-15T13:07:22.000Z</updated>
+    <content type="html"><![CDATA[<p>话说有些时间没有更新博客了,今天正好解决这个问题,顺便把它记录下来..<br>今天遇到的情况是这样的,当CPU占用过高时,屏幕四周会出现一个红框.<br>闪一次两次算了,但是挺萌的(TMD)不停的闪,我的钛合金狗眼都受不了!!  </p>
+<a name="more"></a>
+
+<p>首先我在&quot;开发人员选项&quot;,里面勾掉&quot;严格模式&quot;,闪屏有改善,但是还是存在啊~<br>那该肿么办啊,请看下面讲解!!  </p>
+<p>打开system/build.prop,加入下面的代码</p>
+<pre><code><figure class="highlight"><pre>persist<span class="variable">.sys</span><span class="variable">.strictmode</span><span class="variable">.visual</span>=<span class="number">0</span>
+persist<span class="variable">.sys</span><span class="variable">.strictmode</span><span class="variable">.disable</span>=<span class="number">1</span>
+</pre></figure></code></pre>
+<p>然后保存重启,问题即可解决!! &gt;////&lt;<br>话说大蛋一放假就去陪女朋友了,都不陪俺,俺桑心了..</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[Qualcomm device使用ION memory manager取代PMEM]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/09/qualcomm-device使用ion-memory-manager取代pmem/"/>
+    <id>http://gentlemanmod.github.io//2013/06/09/qualcomm-device使用ion-memory-manager取代pmem/</id>
+    <published>2013-06-09T14:13:03.000Z</published>
+    <updated>2013-06-09T16:11:43.000Z</updated>
+    <content type="html"><![CDATA[<p>今天写好device,成功编译出CM,接下来肯定是调戏啦(你什么都没看到)~<br>BUG肯定也是一堆堆的!一开机,果然一堆error~可是尼玛,大蛋一放假就不见人了!!!<br>我自己折腾几个小时容易么我,我谷歌了几个小时容易么我ヽ(｀д´)ﾉ  </p>
+<a name="more"></a>
+
+<pre><code><figure class="highlight"><pre><span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: D/memalloc(<span class="number">138</span>): init_pmem_area: Initializing pmem area
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: D/memalloc(<span class="number">138</span>): init_pmem_area_locked: Opening master pmem FD
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/memalloc(<span class="number">138</span>): <span class="regexp">/dev/</span>pmem: Failed to open pmem device: No such file or directory
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/memalloc(<span class="number">138</span>): <span class="regexp">/dev/</span>pmem: failed to initialize pmem area
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/gralloc(<span class="number">138</span>): gralloc failed err=No such file or directory
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: W/GraphicBufferAllocator(<span class="number">138</span>): WOW! gralloc alloc failed, waiting <span class="keyword">for</span> pending frees!
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/gralloc(<span class="number">138</span>): gralloc failed err=No such file or directory
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: W/GraphicBufferAllocator(<span class="number">138</span>): alloc(<span class="number">480</span>, <span class="number">800</span>, <span class="number">2</span>, <span class="number">00000</span>b03, ...) failed -<span class="number">2</span> (No such file or directory)
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/SurfaceFlinger(<span class="number">138</span>): GraphicBufferAlloc::createGraphicBuffer(w=<span class="number">480</span>, h=<span class="number">800</span>) failed (No such file or directory), handle=<span class="number">0x0</span>
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/BufferQueue(<span class="number">138</span>): [BootAnimation] dequeueBuffer: SurfaceComposer::createGraphicBuffer failed
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: W/Adreno200-EGLSUB(<span class="number">412</span>): <span class="xml"><span class="tag">&lt;<span class="title">DequeueBuffer:420</span>&gt;</span>: dequeue native buffer fail: No such file or directory
+06-09 17:15:48.580: W/Adreno200-EGL(412): <span class="tag">&lt;<span class="title">qeglDrvAPI_eglMakeCurrent:2855</span>&gt;</span>: EGL_BAD_ALLOC
+06-09 17:15:48.580: E/libEGL(412): eglMakeCurrent:593 error 3003 (EGL_BAD_ALLOC)
+06-09 17:15:48.580: E/SurfaceFlinger(138): GL error 0x0505
+06-09 17:15:48.580: W/Adreno200-EGLSUB(138): <span class="tag">&lt;<span class="title">GetBackBuffer:2181</span>&gt;</span>: handle base address is NULL
+06-09 17:15:48.580: W/Adreno200-ES20(138): <span class="tag">&lt;<span class="title">gl2_surface_swap:43</span>&gt;</span>: GL_OUT_OF_MEMORY
+06-09 17:15:48.580: W/Adreno200-EGL(138): <span class="tag">&lt;<span class="title">qeglDrvAPI_eglSwapBuffers:3482</span>&gt;</span>: EGL_BAD_ALLOC</span>
+</pre></figure></code></pre>
+<p>上面就是错误信息啦,一眼看过去就看出了pmem驱动无法打开<br>What,为神马打不开啊???因为文件不存在啊,魂淡!<br>然后我就把kernel的config给提取出来看了下  </p>
+<pre><code><figure class="highlight"><pre><span class="variable">$ </span>adb pull /proc/config.gz
+<span class="number">245</span> <span class="constant">KB</span>/s (<span class="number">20151</span> bytes <span class="keyword">in</span> <span class="number">0</span>.080s)
+
+<span class="variable">$ </span>gunzip -c config.gz |grep <span class="constant">PMEM</span>
+<span class="constant">CONFIG_ANDROID_PMEM</span>=y
+</pre></figure></code></pre>
+<p>次奥,内核都开启了PMEM为神马还是不行啊!!!(つД`)<br>好吧,接着我就去看dmesg,看看到底是神马回事...  </p>
+<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">6</span>&gt;</span>[    2.445319] loop: module loaded
+<span class="tag">&lt;<span class="title">1</span>&gt;</span>[    2.447678] pmem: pmem_setup: unable to register pmem driver(pmem) - zero size passed in!
+<span class="tag">&lt;<span class="title">4</span>&gt;</span>[    2.455961] android_pmem: probe of android_pmem.0 failed with error -1
+<span class="tag">&lt;<span class="title">1</span>&gt;</span>[    2.462321] pmem: pmem_setup: unable to register pmem driver(pmem_adsp) - zero size passed in!
+<span class="tag">&lt;<span class="title">4</span>&gt;</span>[    2.471003] android_pmem: probe of android_pmem.1 failed with error -1
+<span class="tag">&lt;<span class="title">1</span>&gt;</span>[    2.477379] pmem: pmem_setup: unable to register pmem driver(pmem_audio) - zero size passed in!
+<span class="tag">&lt;<span class="title">4</span>&gt;</span>[    2.486199] android_pmem: probe of android_pmem.2 failed with error -1
+</pre></figure></code></pre>
+<p>好吧,pmem都起不来了,怪不得找不到驱动...<br>个人感觉那货需要从内核源码搞了,但是没有源码啊,肿么破???<br>那俺就只好用ION取代PMEM了,pougai!!!!  </p>
+<p>打开device/{manufacturer}/{device}/BoardConfig.mk,添加下面的代码  </p>
+<pre><code><figure class="highlight"><pre><span class="comment"># Uses ION memory manager,Renounce the use of PMEM</span>
+<span class="title">TARGET_USES_ION</span> := <span class="built_in">true</span>
+</pre></figure></code></pre>
+<p>然后重新编译,你也可以用mmm单独编译模块~<br>刷进手机,重启,看log!!欧耶,这个BUG没有了,但是剩下的BUG还有一堆堆...</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[修改自动亮度下背光和按键的亮度]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/08/修改自动亮度下背光和按键的亮度/"/>
+    <id>http://gentlemanmod.github.io//2013/06/08/修改自动亮度下背光和按键的亮度/</id>
+    <published>2013-06-08T12:35:26.000Z</published>
+    <updated>2013-06-09T08:32:57.000Z</updated>
+    <content type="html"><![CDATA[<p>乐蛙又出现BUG了,高通拼包的BUG就是多!设置自动亮度后,按住光感器,屏幕会一片黑..<br>第一感觉就是去看Log....Log如下~  </p>
+<pre><code><figure class="highlight"><pre>E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">34</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">33</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">32</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">31</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">32</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">30</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">29</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">28</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">26</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">23</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">19</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">16</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">12</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">10</span>
+</pre></figure></code></pre>
+<a name="more"></a>
+
+<p>从此可以看到,屏幕亮度降到10后,屏幕就黑了,那我们就需要把最低亮度调高!<br>感谢大蛋的指导,让我们一起大喊:&quot;大蛋教万岁,大蛋教武运长久!!!&quot;<br>首先我们需要加载和反编译framework-res.apk  </p>
+<pre><code><figure class="highlight"><pre><span class="comment">$</span> <span class="comment">apktool</span> <span class="comment">if</span> <span class="comment">framework</span>-<span class="comment">res</span>.<span class="comment">apk</span>
+<span class="comment">I:</span> <span class="comment">Framework</span> <span class="comment">installed</span> <span class="comment">to:</span> <span class="comment">/home/michellgaby/apktool/framework/1</span>.<span class="comment">apk</span>
+
+<span class="comment">$</span> <span class="comment">apktool</span> <span class="comment">d</span> <span class="comment">framework</span>-<span class="comment">res</span>.<span class="comment">apk</span> 
+<span class="comment">I:</span> <span class="comment">Loading</span> <span class="comment">resource</span> <span class="comment">table</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Loaded</span>.
+<span class="comment">I:</span> <span class="comment">Decoding</span> <span class="comment">AndroidManifest</span>.<span class="comment">xml</span> <span class="comment">with</span> <span class="comment">resources</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Regular</span> <span class="comment">manifest</span> <span class="comment">package</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Decoding</span> <span class="comment">file</span>-<span class="comment">resources</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Decoding</span> <span class="comment">values</span> <span class="comment">*/*</span> <span class="comment">XMLs</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Done</span>.
+<span class="comment">I:</span> <span class="comment">Copying</span> <span class="comment">assets</span> <span class="comment">and</span> <span class="comment">libs</span>.<span class="string">.</span><span class="string">.</span>
+</pre></figure></code></pre>
+<p>然后编辑framework-res_apk/res/values/arrays.xml文件~<br>如果framework-res_apk/res/values-zh-rCN/arrays.xml里面也有对应项的话,那就修改,没有就不需要修改!<br>接着定位为下面代码的位置  </p>
+<pre><code><figure class="highlight"><pre>    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessLevels"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>7<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>94<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>208<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>458<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>2223<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessLcdBacklightValues"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>10<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>35<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>55<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>70<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>70<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>250<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessButtonBacklightValues"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+</pre></figure></code></pre>
+<p>我先来讲解下上面代码的含义吧<br>config_autoBrightnessLevels：手机检测到的光亮度<br>config_autoBrightnessLcdBacklightValues：对应需要设定的背光亮度<br>config_autoBrightnessButtonBacklightValues：对应需要设定的按键灯亮度<br>如:当检测到的光亮度低于7时，设置背光亮度为10，按键灯亮度为255。(255是最大亮度,0代表关闭灯源)  </p>
+<p>我们需要修改的就是&quot;10&quot;这个数值,我修改为&quot;25&quot;,亮度太暗看手机会不习惯~<br>修改后的代码如下</p>
+<pre><code><figure class="highlight"><pre>    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessLevels"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>7<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>94<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>208<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>458<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>2223<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessLcdBacklightValues"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>25<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>35<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>55<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>70<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>70<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>250<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessButtonBacklightValues"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+</pre></figure></code></pre>
+<p>然后我们回编译,出现警告不管他,我们只需要回编译后的resources.arsc文件  </p>
+<pre><code><figure class="highlight"><pre>$ apktool b framework-res
+W: Could <span class="keyword">not</span> find sources
+I: Checking whether resources has changed...
+I: Building resources...
+aapt: warning: <span class="typename">string</span> <span class="attribute">'url_dialog_choice_message</span>' has no <span class="keyword">default</span> translation <span class="keyword">in</span> /home/michellgaby/tmp/framework-res/res; found: zh_CN
+aapt: warning: <span class="typename">string</span> <span class="attribute">'url_dialog_choice_title</span>' has no <span class="keyword">default</span> translation <span class="keyword">in</span> /home/michellgaby/tmp/framework-res/res; found: zh_CN
+I: Building apk <span class="keyword">file</span>...
+</pre></figure></code></pre>
+<p>把原来的framework-res.apk复制到frameowrk-res/build/apk文件夹里<br>接着把resources.arsc打包进framework-res.apk  </p>
+<pre><code><figure class="highlight"><pre>$ zip framework-res<span class="variable">.apk</span> resources<span class="variable">.arsc</span>
+</pre></figure></code></pre>
+<p>用ADB传送到手机并修改权限,然后重启即可!!!</p>
+<pre><code><figure class="highlight"><pre>$ adb <span class="keyword">push</span> framework-res.apk /<span class="keyword">system</span>/framework/
+$ adb shell <span class="keyword">chmod</span> <span class="number">644</span> /<span class="keyword">system</span>/framework/framework-res.apk
+$ adb reboot
+</pre></figure></code></pre>
+<p>看看你的手机,背光是不是修改好了~欧耶!!! ヽ( ^∀^)ﾉ<br>修改按键亮度同理,不过是修改&quot;config_autoBrightnessButtonBacklightValues&quot;下的参数!</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[Android触摸屏配置调试]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/07/android触摸屏配置调试/"/>
+    <id>http://gentlemanmod.github.io//2013/06/07/android触摸屏配置调试/</id>
+    <published>2013-06-07T15:45:36.000Z</published>
+    <updated>2013-06-07T16:01:17.000Z</updated>
+    <content type="html"><![CDATA[<p>前几天搞乐蛙时,进入后是鼠标模式,好坑爹的模式有木有~~<br>但是大蛋给出了解决方法,我不怕不怕啦~让我们向大牛致敬!!!  </p>
+<p>首先输入Command查看你的input配置~  </p>
+<pre><code><figure class="highlight"><pre><span class="title">adb</span> shell dumpsys input
+</pre></figure></code></pre>
+<a name="more"></a>
+
+<p>下面给出我设备输出的一部分!!  </p>
+<pre><code><figure class="highlight"><pre>INPUT MANAGER (dumpsys input)
+
+Event Hub State:
+  BuiltInKeyboardId: -<span class="number">2</span>
+  Devices:
+    -<span class="number">1</span>: Virtual
+      Classes: <span class="number">0x40000023</span>
+      Path: &lt;virtual&gt;
+      Descriptor: a718a782d34bc767f4689c232d64d527998ea7fd
+      Location: 
+      UniqueId: &lt;virtual&gt;
+      Identifier: bus=<span class="number">0x0000</span>, vendor=<span class="number">0x0000</span>, product=<span class="number">0x0000</span>, version=<span class="number">0x0000</span>
+      KeyLayoutFile: <span class="regexp">/system/usr/keylayout/</span>Generic.kl
+      KeyCharacterMapFile: <span class="regexp">/system/usr/keychars/</span>Virtual.kcm
+      ConfigurationFile: 
+      HaveKeyboardLayoutOverlay: <span class="literal">false</span>
+    <span class="number">2</span>: <span class="number">7</span>k_handset
+      Classes: <span class="number">0x00000081</span>
+      Path: <span class="regexp">/dev/input/</span>event3
+      Descriptor: <span class="number">485</span>d69228e24f5e46da1598745890b214130dbc4
+      Location: 
+      UniqueId: 
+      Identifier: bus=<span class="number">0x0000</span>, vendor=<span class="number">0x0001</span>, product=<span class="number">0x0001</span>, version=<span class="number">0x0001</span>
+      KeyLayoutFile: <span class="regexp">/system/usr/keylayout/</span><span class="number">7</span>k_handset.kl
+      KeyCharacterMapFile: <span class="regexp">/system/usr/keychars/</span>Generic.kcm
+      ConfigurationFile: 
+      HaveKeyboardLayoutOverlay: <span class="literal">false</span>
+    <span class="number">3</span>: <span class="number">7</span>x27a_kp
+      Classes: <span class="number">0x00000001</span>
+      Path: <span class="regexp">/dev/input/</span>event2
+      Descriptor: <span class="number">69</span>d9f17876369ab4fac2735426d3bc23660247c4
+      Location: 
+      UniqueId: 
+      Identifier: bus=<span class="number">0x0000</span>, vendor=<span class="number">0x0000</span>, product=<span class="number">0x0000</span>, version=<span class="number">0x0000</span>
+      KeyLayoutFile: <span class="regexp">/system/usr/keylayout/</span><span class="number">7</span>x27a_kp.kl
+      KeyCharacterMapFile: <span class="regexp">/system/usr/keychars/</span><span class="number">7</span>x27a_kp.kcm
+      ConfigurationFile: 
+      HaveKeyboardLayoutOverlay: <span class="literal">false</span>
+    <span class="number">4</span>: Fts-touchscreen
+      Classes: <span class="number">0x00000015</span>
+      Path: <span class="regexp">/dev/input/</span>event1
+      Descriptor: af69cada3c01369f38b564c8bd34be115723d040
+      Location: 
+      UniqueId: 
+      Identifier: bus=<span class="number">0x0000</span>, vendor=<span class="number">0x0000</span>, product=<span class="number">0x0000</span>, version=<span class="number">0x0000</span>
+      KeyLayoutFile: <span class="regexp">/system/usr/keylayout/</span>Generic.kl
+      KeyCharacterMapFile: <span class="regexp">/system/usr/keychars/</span>Generic.kcm
+      ConfigurationFile: <span class="regexp">/system/usr/idc/</span>Fts-touchscreen.idc
+      HaveKeyboardLayoutOverlay: <span class="literal">false</span>
+</pre></figure></code></pre>
+<p>从上面可以看到&quot;4: Fts-touchscreen&quot;,这货就是我的触摸屏啦(ﾟ∀ﾟ )<br>我们看下他的配置文件,就是这货&quot;ConfigurationFile: /system/usr/idc/Fts-touchscreen.idc&quot;<br>提示下,如果配置文件那显示为空的话,你就直接用你触摸屏的名字就行了,比如我的就是这样!!!<br>然后我们把官方包里面的/system/usr/idc/Fts-touchscreen.idc给替换过去就搞定了(≧∀≦)~欧耶!  </p>
+<p>不过凡事都有例外,比如我的,官方包里面就没有这个文件,那你就去CM里面找一个吧~(/ω・＼)【【【别找俺,俺是不会发给你的~<br>把Generic.idc改为Fts-touchscreen.idc然后放进usr里面就OK了!!!(/≧▽≦/)</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[Android无法连接adb的解决方法]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/07/android无法连接adb的解决方法/"/>
+    <id>http://gentlemanmod.github.io//2013/06/07/android无法连接adb的解决方法/</id>
+    <published>2013-06-07T15:28:57.000Z</published>
+    <updated>2013-06-08T08:21:42.000Z</updated>
+    <content type="html"><![CDATA[<p>今天在折腾乐蛙时发现无法链接ADB了,但是手机却显示USB调试模式!<br>然后想起了大蛋曾经告诉我CM的解决方法,于是你懂得,俺差点就把菊花给卖了呢(/Д`)~ﾟ｡  </p>
+<pre><code><figure class="highlight"><pre><span class="title">adb</span> shell rm -r /<span class="typedef"><span class="keyword">data</span>/property</span>
+</pre></figure></code></pre>
+<p>进REC干掉这个目录后,CM就可以正常连接了,可是尼玛我的乐蛙肿么还是不行啊!!!<br>我的菊花白卖了啊!!!!魂淡!!!! （╯‵□′）╯︵┴─┴ 
+<a name="more"></a></p>
+<p>折腾的细节就不多说了,都是泪啊!!!<br>经过俺不断的DEBUG...尼玛,终于给我找到了(;´༎ຶД༎ຶ`)<br>原default.prop文件如下  </p>
+<pre><code><figure class="highlight"><pre><span class="preprocessor">#</span>
+<span class="preprocessor"># ADDITIONAL_DEFAULT_PROPERTIES</span>
+<span class="preprocessor">#</span>
+ro<span class="variable">.secure</span>=<span class="number">0</span>
+ro<span class="variable">.allow</span><span class="variable">.mock</span><span class="variable">.location</span>=<span class="number">1</span>
+ro<span class="variable">.debuggable</span>=<span class="number">1</span>
+persist<span class="variable">.sys</span><span class="variable">.usb</span><span class="variable">.config</span>=mtp,diag,serial_smd,serial_tty,rmnet_smd,mass_storage,serial_smd,adb
+</pre></figure></code></pre>
+<p>妈蛋,直接干掉最后的那行就可以连接了!!!!!!!(ÒωÓױ)<br>修改后的default.prop</p>
+<pre><code><figure class="highlight"><pre><span class="preprocessor">#</span>
+<span class="preprocessor"># ADDITIONAL_DEFAULT_PROPERTIES</span>
+<span class="preprocessor">#</span>
+ro<span class="variable">.secure</span>=<span class="number">0</span>
+ro<span class="variable">.allow</span><span class="variable">.mock</span><span class="variable">.location</span>=<span class="number">1</span>
+ro<span class="variable">.debuggable</span>=<span class="number">1</span>
+</pre></figure></code></pre>
+<p>好吧,安卓是坑爹的,错了一个参数都要你的命啊!!!!!!!!!!!</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[编译CM时优化错误的解决方法]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/07/编译cm时优化错误的解决方法/"/>
+    <id>http://gentlemanmod.github.io//2013/06/07/编译cm时优化错误的解决方法/</id>
+    <published>2013-06-07T07:44:40.000Z</published>
+    <updated>2013-06-07T07:52:07.000Z</updated>
+    <content type="html"><![CDATA[<p>编译CM到最后一步是出现优化错误,虽然可以正常使用,但是对于我这种有强迫症的孩子肿么办!!!  </p>
+<pre><code><figure class="highlight"><pre><span class="title">Please</span> install pngcrush, optipng, or pngout
+</pre></figure></code></pre>
+<p>从字面上就看出了缺少软件包,那就安装吧~<br><a name="more"></a></p>
+<pre><code><figure class="highlight"><pre>sudo pacman -S optipng
+
+正在加载软件包<span class="keyword">...</span>
+正在解决依赖关系<span class="keyword">...</span>
+正在查找相互冲突<span class="keyword">...</span>
+
+软件包 (<span class="number">1</span>): optipng-<span class="number">0.7</span><span class="number">.4</span>-<span class="number">1</span>
+
+全部安装大小： <span class="number">0.25</span> MiB
+
+:: 进行安装吗？ [Y/n] y
+(<span class="number">1</span>/<span class="number">1</span>) 正在检查密钥环里的密钥                       [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在检查软件包完整性                         [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在加载软件包文件                           [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在检查文件冲突                             [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在检查可用硬盘空间                         [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在安装 optipng                             [<span class="comment">######################] 100%</span>
+</pre></figure></code></pre>
+<p>你以为安装这个就行了???NO NO NO!<br>还需要安装一个pngcrush呢,没有安装yaourt的看官方WIKI去~  </p>
+<pre><code><figure class="highlight"><pre>sudo yaourt pngcrush
+
+正在加载软件包<span class="keyword">...</span>
+正在解决依赖关系<span class="keyword">...</span>
+正在查找相互冲突<span class="keyword">...</span>
+
+软件包 (<span class="number">1</span>): pngcrush-<span class="number">1.7</span><span class="number">.59</span>-<span class="number">1</span>
+
+全部安装大小： <span class="number">0.09</span> MiB
+
+:: 进行安装吗？ [Y/n] y
+(<span class="number">1</span>/<span class="number">1</span>) 正在检查密钥环里的密钥                       [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在检查软件包完整性                         [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在加载软件包文件                           [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在检查文件冲突                             [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在检查可用硬盘空间                         [<span class="comment">######################] 100%</span>
+(<span class="number">1</span>/<span class="number">1</span>) 正在安装 pngcrush                            [<span class="comment">######################] 100%</span>
+</pre></figure></code></pre>
+<p>哟西,重新编译一次,可以进行优化了!!!欧耶~~</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[Archlinux升级filesystem]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/05/archlinux升级filesystem/"/>
+    <id>http://gentlemanmod.github.io//2013/06/05/archlinux升级filesystem/</id>
+    <published>2013-06-05T12:15:44.000Z</published>
+    <updated>2013-06-05T12:47:23.000Z</updated>
+    <content type="html"><![CDATA[<p>今天心血来潮,开滚Arch!!结果filesystem滚挂了,这尼玛闹哪样（╯‵□′）╯︵┴─┴  </p>
+<pre><code><figure class="highlight"><pre>错误：无法提交处理 (有冲突的文件)
+<span class="title">filesystem</span>: 文件系统中已存在 /bin 
+<span class="title">filesystem</span>: 文件系统中已存在 /sbin 
+<span class="title">filesystem</span>: 文件系统中已存在 /usr/sbin 
+发生错误，没有软件包被更新。
+</pre></figure></code></pre>
+<p>套用某人的一句话:&quot;滚挂是一个非常高深的课题，简单地说就是喜大普奔，是一件让他人很愉快的事情。&quot;<br>滚挂后我才想起arch那帮人说filesystem升级了!!!好吧,这回还真是喜大普奔了~  </p>
+<a name="more"></a>
+
+<p>然后果断的去找解决办法~电脑都不敢重启了有木有!!否则又要进livecd修复啊..<br>果然,arch那帮人说明了解决方法!升级后的filesystem把可执行程序都集中到/usr/bin了~<br>以后不需要/bin /sbin /usr/sbin了,只需要创建一个软链接到/usr/bin就行了(升级后管理packages方便多了有木有)  </p>
+<h3>注意:以下操作均在root权限下执行</h3>
+<p>首先把/bin /sbin /usr/sbin里面的文件都移动到/usr/bin</p>
+<pre><code><figure class="highlight"><pre><span class="comment">mv</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">/bin/*</span> <span class="comment">/usr/bin/</span>
+<span class="comment">mv</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">/sbin/*</span> <span class="comment">/usr/bin/</span>
+<span class="comment">mv</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">/usr/sbin/*</span> <span class="comment">/usr/bin/
+</pre></figure></code></pre>
+<p>接着干掉那三个目录!!!没错,就是干掉!!拿出点勇气,最多进livecd修复(括弧笑)  </p>
+<pre><code><figure class="highlight"><pre><span class="comment">rf</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">/bin</span>
+<span class="comment">rf</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">/sbin</span>
+<span class="comment">rf</span> <span class="literal">-</span><span class="comment">f</span> <span class="comment">/usr/sbin
+</pre></figure></code></pre>
+<p>接下来创建软连接...</p>
+<pre><code><figure class="highlight"><pre><span class="comment">ln</span> <span class="literal">-</span><span class="comment">s</span> <span class="comment">/usr/bin</span> <span class="comment">/bin</span>
+<span class="comment">ln</span> <span class="literal">-</span><span class="comment">s</span> <span class="comment">/usr/bin</span> <span class="comment">/sbin</span>
+<span class="comment">ln</span> <span class="literal">-</span><span class="comment">s</span> <span class="comment">/usr/bin</span> <span class="comment">/usr/sbin
+</pre></figure></code></pre>
+<p>好了,搞定一切准备了,开始升级filesystem</p>
+<pre><code><figure class="highlight"><pre><span class="title">pacman</span> -Su filesystem
+</pre></figure></code></pre>
+<p>哟西,一次就过了!!终于把Arch给救回了!!!!!!</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Linux/" term="Linux"/>
+  </entry>
+  <entry>
+    <title type="html"><![CDATA[使用hexo和github搭建自己的部落格]]></title>
+    <link href="http://gentlemanmod.github.io//2013/06/04/使用hexo和github搭建自己的部落格/"/>
+    <id>http://gentlemanmod.github.io//2013/06/04/使用hexo和github搭建自己的部落格/</id>
+    <published>2013-06-04T14:27:52.000Z</published>
+    <updated>2013-06-05T12:38:34.000Z</updated>
+    <content type="html"><![CDATA[<p>趁着刚刚搭建好部落格，把搭建的步骤写下来先。<br>我使用的是Hexo和Github page来搭建部落格！！  </p>
+<p>先说下我的系统环境：Archlinux 64位  </p>
+<hr>
+<h3>安装所需要的package</h3>
+<pre><code><figure class="highlight"><pre>su<span class="operator"><span class="keyword">do</span> pacman -S git openssh nodejs
+</pre></figure></code></pre>
+<h3>安装hexo</h3>
+<pre><code><figure class="highlight"><pre>su<span class="operator"><span class="keyword">do</span> npm install -g hexo
+</pre></figure></code></pre>
+<p><a name="more"></a></p>
+<h3>更新nodejs里的全部package</h3>
+<pre><code><figure class="highlight"><pre>su<span class="operator"><span class="keyword">do</span> npm <span class="keyword">update</span> -g
+</pre></figure></code></pre>
+<p>现在搭建部落格所需要的package都安装好了~</p>
+<hr>
+<h3>初始化</h3>
+<p>先创建个文件夹存放code  </p>
+<pre><code><figure class="highlight"><pre><span class="title">mkdir</span> blog
+<span class="title">cd</span> blog
+</pre></figure></code></pre>
+<p>接着我们开始初始化hexo  </p>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> init
+</pre></figure></code></pre>
+<p>我们已经将部落格系统需要的东西初始化好了~  </p>
+<h3>接着说下hexo的基本用法:</h3>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> new <span class="string">"title"</span>
+</pre></figure></code></pre>
+<p>这个指令将建立一篇新的文章，title是你的文章标题。  </p>
+<h3>那怎么才能写文章呢？？？</h3>
+<p>输入这个指令后，在/source/_posts/里面就会多了一个md文件(title.md)<br>部落格的文章都是用Markdown的格式处理的，比如我这篇。<br>接着编辑md文件(title.md)，在&quot;---&quot;下面就可以写你的文章内容了！  </p>
+<p>那我写好后能不能先试看一下呢，这个当然可以～  </p>
+<h3>首先生成静态文件</h3>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> generate
+</pre></figure></code></pre>
+<h3>接着启动服务器</h3>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> server
+</pre></figure></code></pre>
+<p>然后用浏览器打开localhost:port(这需要看你开在哪个prot上，可以在_config.yml中设置)<br>你的部落格就生成了，欧耶～ </p>
+<hr>
+<h3>如何deploy到github page(终于到重点了)</h3>
+<p>首先去github创建一个项目，项目的名称为：username.github.com(username为你的用户名)<br>然后在blog(hexo初始化的文件夹下)的_config.yml里面修改 </p>
+<pre><code><figure class="highlight"><pre><span class="method">deploy:</span>
+    <span class="method">type:</span> github
+    <span class="method">repository:</span> <span class="method">https:</span>//github.com/username/username.github.com.git
+    <span class="method">branch:</span> master
+</pre></figure></code></pre>
+<p>然后输入command  </p>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> deploy
+</pre></figure></code></pre>
+<p>这样就大功告成了，如果需要输入用户名和密码，你就输入github上的用户名和密码就OK了。<br>如果你懒得每次上传都输入一次的话，你可以创建SSH密钥，详情请看<a href="https://help.github.com/articles/generating-ssh-keys">Generating SSH Keys</a>  </p>
+<hr>
+<h3>参考</h3>
+<ol>
+<li><a href="http://zespia.tw/hexo/zh-CN/">官方的WIKI</a>写的非常详细,你可以在里面找到你需要的一切,况且WIKI还是中文的呢.   </li>
+<li>&quot;你家的小熊&quot;的<a href="http://eva0919.github.io/2013/04/21/%E4%BD%BF%E7%94%A8hexo%E4%BB%A5%E5%8F%8Agithub-page%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E9%83%A8%E8%90%BD%E6%A0%BC/">搭建教学</a>,这里面说得很详细,如果看不明官方WIKI的话可以看下这篇!</li>
+</ol>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/hexo/" term="hexo"/>
+  </entry>
+</feed>

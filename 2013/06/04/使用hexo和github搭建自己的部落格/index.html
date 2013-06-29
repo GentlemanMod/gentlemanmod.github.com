@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用hexo和github搭建自己的部落格 | 绅士的幻想乡</title>
+  <meta name="author" content="GentlemanMod">
+  
+  <meta name="description" content="趁着刚刚搭建好部落格，把搭建的步骤写下来先。我使用的是Hexo和Github page来搭建部落格！！  
+先说下我的系统环境：Archlinux 64位  
+
+安装所需要的package
+sudo pacman -S git openssh nodejs
+
+安装hexo
+sudo npm install -g hexo">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="使用hexo和github搭建自己的部落格"/>
+  <meta property="og:site_name" content="绅士的幻想乡"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="stylesheet" type="text/css" href="/css/haruna.css">
+  <link rel="alternate" href="/atom.xml" title="绅士的幻想乡" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+  <script>var path = "http://gentlemanmod.github.io";var imagewidth = '240';var imageheight = '240';</script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/haruna.js" charset="gb2312" ></script>
+  <script>createFace("http://gentlemanmod.github.io/img/skin/ikamusume/1.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/2.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/3.gif");</script>
+  <script>var talkself_user = [ ["喔耶～加油！加油！加油！加油！", "2"],["主人现在老是弃旧迎新，朋友们都好伤心啊..", "3"],["对本博客有什么建议可以留言哦~", "2"],["哇啊啊啊啊啊啊啊啊啊...", "3"],["目前博客托管在github上，速度应该不错吧？", "1"],["一个域名居然要50多大洋..", "3"] ];var talkself_arr = talkself_arr.concat(talkself_user);</script>
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">绅士的幻想乡</a></h1>
+  <h2><a href="/"></a></h2>
+  <h2><a href="/"><script>hitokoto()</script></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li><a href="/atom.xml">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-04T14:27:52.000Z"><a href="/2013/06/04/使用hexo和github搭建自己的部落格/">6月 4 2013</a></time>
+      
+      
+  
+    <h1 class="title">使用hexo和github搭建自己的部落格</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>趁着刚刚搭建好部落格，把搭建的步骤写下来先。<br>我使用的是Hexo和Github page来搭建部落格！！  </p>
+<p>先说下我的系统环境：Archlinux 64位  </p>
+<hr>
+<h3>安装所需要的package</h3>
+<pre><code><figure class="highlight"><pre>su<span class="operator"><span class="keyword">do</span> pacman -S git openssh nodejs
+</pre></figure></code></pre>
+<h3>安装hexo</h3>
+<pre><code><figure class="highlight"><pre>su<span class="operator"><span class="keyword">do</span> npm install -g hexo
+</pre></figure></code></pre>
+<p><a name="more"></a></p>
+<h3>更新nodejs里的全部package</h3>
+<pre><code><figure class="highlight"><pre>su<span class="operator"><span class="keyword">do</span> npm <span class="keyword">update</span> -g
+</pre></figure></code></pre>
+<p>现在搭建部落格所需要的package都安装好了~</p>
+<hr>
+<h3>初始化</h3>
+<p>先创建个文件夹存放code  </p>
+<pre><code><figure class="highlight"><pre><span class="title">mkdir</span> blog
+<span class="title">cd</span> blog
+</pre></figure></code></pre>
+<p>接着我们开始初始化hexo  </p>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> init
+</pre></figure></code></pre>
+<p>我们已经将部落格系统需要的东西初始化好了~  </p>
+<h3>接着说下hexo的基本用法:</h3>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> new <span class="string">"title"</span>
+</pre></figure></code></pre>
+<p>这个指令将建立一篇新的文章，title是你的文章标题。  </p>
+<h3>那怎么才能写文章呢？？？</h3>
+<p>输入这个指令后，在/source/_posts/里面就会多了一个md文件(title.md)<br>部落格的文章都是用Markdown的格式处理的，比如我这篇。<br>接着编辑md文件(title.md)，在&quot;---&quot;下面就可以写你的文章内容了！  </p>
+<p>那我写好后能不能先试看一下呢，这个当然可以～  </p>
+<h3>首先生成静态文件</h3>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> generate
+</pre></figure></code></pre>
+<h3>接着启动服务器</h3>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> server
+</pre></figure></code></pre>
+<p>然后用浏览器打开localhost:port(这需要看你开在哪个prot上，可以在_config.yml中设置)<br>你的部落格就生成了，欧耶～ </p>
+<hr>
+<h3>如何deploy到github page(终于到重点了)</h3>
+<p>首先去github创建一个项目，项目的名称为：username.github.com(username为你的用户名)<br>然后在blog(hexo初始化的文件夹下)的_config.yml里面修改 </p>
+<pre><code><figure class="highlight"><pre><span class="method">deploy:</span>
+    <span class="method">type:</span> github
+    <span class="method">repository:</span> <span class="method">https:</span>//github.com/username/username.github.com.git
+    <span class="method">branch:</span> master
+</pre></figure></code></pre>
+<p>然后输入command  </p>
+<pre><code><figure class="highlight"><pre><span class="title">hexo</span> deploy
+</pre></figure></code></pre>
+<p>这样就大功告成了，如果需要输入用户名和密码，你就输入github上的用户名和密码就OK了。<br>如果你懒得每次上传都输入一次的话，你可以创建SSH密钥，详情请看<a href="https://help.github.com/articles/generating-ssh-keys">Generating SSH Keys</a>  </p>
+<hr>
+<h3>参考</h3>
+<ol>
+<li><a href="http://zespia.tw/hexo/zh-CN/">官方的WIKI</a>写的非常详细,你可以在里面找到你需要的一切,况且WIKI还是中文的呢.   </li>
+<li>&quot;你家的小熊&quot;的<a href="http://eva0919.github.io/2013/04/21/%E4%BD%BF%E7%94%A8hexo%E4%BB%A5%E5%8F%8Agithub-page%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E9%83%A8%E8%90%BD%E6%A0%BC/">搭建教学</a>,这里面说得很详细,如果看不明官方WIKI的话可以看下这篇!</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/hexo/">hexo</a>
+  </div>
+
+        <!--
+
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+-->
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"gentlemanmod"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:gentlemanmod.github.io/">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android/" style="font-size: 18.00px;">Android</a><a href="/tags/Linux/" style="font-size: 12.00px;">Linux</a><a href="/tags/MTK/" style="font-size: 10.00px;">MTK</a><a href="/tags/hexo/" style="font-size: 16.00px;">hexo</a><a href="/tags/反编译/" style="font-size: 14.00px;">反编译</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/06/29/任务管理界面添加显示ram信息/">任务管理界面添加显示RAM信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/mtk机子修复分区信息/">MTK机子修复分区信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/16/转换framebuffer实现安卓截图/">转换framebuffer实现安卓截图</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/15/android去除屏幕红框/">Android去除屏幕红框</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/09/qualcomm-device使用ion-memory-manager取代pmem/">Qualcomm device使用ION memory manager取代PMEM</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">联系我</h3>
+  <ul class="entry">
+      <li>Gmail: GentlemanMod@gmail.com</li>
+      <li>QQ: 2292421148</li>
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">朋友们</h3>
+  <ul class="entry">
+      <li>
+        <a href="http://flau.me" target="_blank">芦苇丛的鹅蛋</a>
+      </li>
+  </ul>
+</div>
+
+  <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2532112564&verifier=ff61d30e&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 GentlemanMod
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>修改自动亮度下背光和按键的亮度 | 绅士的幻想乡</title>
+  <meta name="author" content="GentlemanMod">
+  
+  <meta name="description" content="乐蛙又出现BUG了,高通拼包的BUG就是多!设置自动亮度后,按住光感器,屏幕会一片黑..第一感觉就是去看Log....Log如下~  
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 34
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 33
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 32
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 31
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 32
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 30
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 29
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 28
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 26
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 23
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 19
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 16
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 12
+E/lights  (  399): set_light_backlight state = 1408253004, brightness = 10">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="修改自动亮度下背光和按键的亮度"/>
+  <meta property="og:site_name" content="绅士的幻想乡"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="stylesheet" type="text/css" href="/css/haruna.css">
+  <link rel="alternate" href="/atom.xml" title="绅士的幻想乡" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+  <script>var path = "http://gentlemanmod.github.io";var imagewidth = '240';var imageheight = '240';</script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/haruna.js" charset="gb2312" ></script>
+  <script>createFace("http://gentlemanmod.github.io/img/skin/ikamusume/1.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/2.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/3.gif");</script>
+  <script>var talkself_user = [ ["喔耶～加油！加油！加油！加油！", "2"],["主人现在老是弃旧迎新，朋友们都好伤心啊..", "3"],["对本博客有什么建议可以留言哦~", "2"],["哇啊啊啊啊啊啊啊啊啊...", "3"],["目前博客托管在github上，速度应该不错吧？", "1"],["一个域名居然要50多大洋..", "3"] ];var talkself_arr = talkself_arr.concat(talkself_user);</script>
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">绅士的幻想乡</a></h1>
+  <h2><a href="/"></a></h2>
+  <h2><a href="/"><script>hitokoto()</script></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li><a href="/atom.xml">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-08T12:35:26.000Z"><a href="/2013/06/08/修改自动亮度下背光和按键的亮度/">6月 8 2013</a></time>
+      
+      
+  
+    <h1 class="title">修改自动亮度下背光和按键的亮度</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>乐蛙又出现BUG了,高通拼包的BUG就是多!设置自动亮度后,按住光感器,屏幕会一片黑..<br>第一感觉就是去看Log....Log如下~  </p>
+<pre><code><figure class="highlight"><pre>E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">34</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">33</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">32</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">31</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">32</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">30</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">29</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">28</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">26</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">23</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">19</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">16</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">12</span>
+E/lights  (  <span class="number">399</span>): set_light_backlight <span class="keyword">state</span> = <span class="number">1408253004</span>, brightness = <span class="number">10</span>
+</pre></figure></code></pre>
+<a name="more"></a>
+
+<p>从此可以看到,屏幕亮度降到10后,屏幕就黑了,那我们就需要把最低亮度调高!<br>感谢大蛋的指导,让我们一起大喊:&quot;大蛋教万岁,大蛋教武运长久!!!&quot;<br>首先我们需要加载和反编译framework-res.apk  </p>
+<pre><code><figure class="highlight"><pre><span class="comment">$</span> <span class="comment">apktool</span> <span class="comment">if</span> <span class="comment">framework</span>-<span class="comment">res</span>.<span class="comment">apk</span>
+<span class="comment">I:</span> <span class="comment">Framework</span> <span class="comment">installed</span> <span class="comment">to:</span> <span class="comment">/home/michellgaby/apktool/framework/1</span>.<span class="comment">apk</span>
+
+<span class="comment">$</span> <span class="comment">apktool</span> <span class="comment">d</span> <span class="comment">framework</span>-<span class="comment">res</span>.<span class="comment">apk</span> 
+<span class="comment">I:</span> <span class="comment">Loading</span> <span class="comment">resource</span> <span class="comment">table</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Loaded</span>.
+<span class="comment">I:</span> <span class="comment">Decoding</span> <span class="comment">AndroidManifest</span>.<span class="comment">xml</span> <span class="comment">with</span> <span class="comment">resources</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Regular</span> <span class="comment">manifest</span> <span class="comment">package</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Decoding</span> <span class="comment">file</span>-<span class="comment">resources</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Decoding</span> <span class="comment">values</span> <span class="comment">*/*</span> <span class="comment">XMLs</span>.<span class="string">.</span><span class="string">.</span>
+<span class="comment">I:</span> <span class="comment">Done</span>.
+<span class="comment">I:</span> <span class="comment">Copying</span> <span class="comment">assets</span> <span class="comment">and</span> <span class="comment">libs</span>.<span class="string">.</span><span class="string">.</span>
+</pre></figure></code></pre>
+<p>然后编辑framework-res_apk/res/values/arrays.xml文件~<br>如果framework-res_apk/res/values-zh-rCN/arrays.xml里面也有对应项的话,那就修改,没有就不需要修改!<br>接着定位为下面代码的位置  </p>
+<pre><code><figure class="highlight"><pre>    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessLevels"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>7<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>94<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>208<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>458<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>2223<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessLcdBacklightValues"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>10<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>35<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>55<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>70<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>70<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>250<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessButtonBacklightValues"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+</pre></figure></code></pre>
+<p>我先来讲解下上面代码的含义吧<br>config_autoBrightnessLevels：手机检测到的光亮度<br>config_autoBrightnessLcdBacklightValues：对应需要设定的背光亮度<br>config_autoBrightnessButtonBacklightValues：对应需要设定的按键灯亮度<br>如:当检测到的光亮度低于7时，设置背光亮度为10，按键灯亮度为255。(255是最大亮度,0代表关闭灯源)  </p>
+<p>我们需要修改的就是&quot;10&quot;这个数值,我修改为&quot;25&quot;,亮度太暗看手机会不习惯~<br>修改后的代码如下</p>
+<pre><code><figure class="highlight"><pre>    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessLevels"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>7<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>94<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>208<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>458<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>2223<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessLcdBacklightValues"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>25<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>35<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>55<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>70<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>70<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>250<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">integer-array</span> <span class="attribute">name</span>=<span class="value">"config_autoBrightnessButtonBacklightValues"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>255<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">item</span>&gt;</span>0<span class="tag">&lt;/<span class="title">item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">integer-array</span>&gt;</span>
+</pre></figure></code></pre>
+<p>然后我们回编译,出现警告不管他,我们只需要回编译后的resources.arsc文件  </p>
+<pre><code><figure class="highlight"><pre>$ apktool b framework-res
+W: Could <span class="keyword">not</span> find sources
+I: Checking whether resources has changed...
+I: Building resources...
+aapt: warning: <span class="typename">string</span> <span class="attribute">'url_dialog_choice_message</span>' has no <span class="keyword">default</span> translation <span class="keyword">in</span> /home/michellgaby/tmp/framework-res/res; found: zh_CN
+aapt: warning: <span class="typename">string</span> <span class="attribute">'url_dialog_choice_title</span>' has no <span class="keyword">default</span> translation <span class="keyword">in</span> /home/michellgaby/tmp/framework-res/res; found: zh_CN
+I: Building apk <span class="keyword">file</span>...
+</pre></figure></code></pre>
+<p>把原来的framework-res.apk复制到frameowrk-res/build/apk文件夹里<br>接着把resources.arsc打包进framework-res.apk  </p>
+<pre><code><figure class="highlight"><pre>$ zip framework-res<span class="variable">.apk</span> resources<span class="variable">.arsc</span>
+</pre></figure></code></pre>
+<p>用ADB传送到手机并修改权限,然后重启即可!!!</p>
+<pre><code><figure class="highlight"><pre>$ adb <span class="keyword">push</span> framework-res.apk /<span class="keyword">system</span>/framework/
+$ adb shell <span class="keyword">chmod</span> <span class="number">644</span> /<span class="keyword">system</span>/framework/framework-res.apk
+$ adb reboot
+</pre></figure></code></pre>
+<p>看看你的手机,背光是不是修改好了~欧耶!!! ヽ( ^∀^)ﾉ<br>修改按键亮度同理,不过是修改&quot;config_autoBrightnessButtonBacklightValues&quot;下的参数!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Android/">Android</a>
+  </div>
+
+        <!--
+
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+-->
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"gentlemanmod"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:gentlemanmod.github.io/">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android/" style="font-size: 18.00px;">Android</a><a href="/tags/Linux/" style="font-size: 12.00px;">Linux</a><a href="/tags/MTK/" style="font-size: 10.00px;">MTK</a><a href="/tags/hexo/" style="font-size: 16.00px;">hexo</a><a href="/tags/反编译/" style="font-size: 14.00px;">反编译</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/06/29/任务管理界面添加显示ram信息/">任务管理界面添加显示RAM信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/mtk机子修复分区信息/">MTK机子修复分区信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/16/转换framebuffer实现安卓截图/">转换framebuffer实现安卓截图</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/15/android去除屏幕红框/">Android去除屏幕红框</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/09/qualcomm-device使用ion-memory-manager取代pmem/">Qualcomm device使用ION memory manager取代PMEM</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">联系我</h3>
+  <ul class="entry">
+      <li>Gmail: GentlemanMod@gmail.com</li>
+      <li>QQ: 2292421148</li>
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">朋友们</h3>
+  <ul class="entry">
+      <li>
+        <a href="http://flau.me" target="_blank">芦苇丛的鹅蛋</a>
+      </li>
+  </ul>
+</div>
+
+  <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2532112564&verifier=ff61d30e&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 GentlemanMod
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

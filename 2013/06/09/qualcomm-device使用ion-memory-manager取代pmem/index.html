@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Qualcomm device使用ION memory manager取代PMEM | 绅士的幻想乡</title>
+  <meta name="author" content="GentlemanMod">
+  
+  <meta name="description" content="今天写好device,成功编译出CM,接下来肯定是调戏啦(你什么都没看到)~BUG肯定也是一堆堆的!一开机,果然一堆error~可是尼玛,大蛋一放假就不见人了!!!我自己折腾几个小时容易么我,我谷歌了几个小时容易么我ヽ(｀д´)ﾉ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Qualcomm device使用ION memory manager取代PMEM"/>
+  <meta property="og:site_name" content="绅士的幻想乡"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="stylesheet" type="text/css" href="/css/haruna.css">
+  <link rel="alternate" href="/atom.xml" title="绅士的幻想乡" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+  <script>var path = "http://gentlemanmod.github.io";var imagewidth = '240';var imageheight = '240';</script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/haruna.js" charset="gb2312" ></script>
+  <script>createFace("http://gentlemanmod.github.io/img/skin/ikamusume/1.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/2.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/3.gif");</script>
+  <script>var talkself_user = [ ["喔耶～加油！加油！加油！加油！", "2"],["主人现在老是弃旧迎新，朋友们都好伤心啊..", "3"],["对本博客有什么建议可以留言哦~", "2"],["哇啊啊啊啊啊啊啊啊啊...", "3"],["目前博客托管在github上，速度应该不错吧？", "1"],["一个域名居然要50多大洋..", "3"] ];var talkself_arr = talkself_arr.concat(talkself_user);</script>
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">绅士的幻想乡</a></h1>
+  <h2><a href="/"></a></h2>
+  <h2><a href="/"><script>hitokoto()</script></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li><a href="/atom.xml">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-06-09T14:13:03.000Z"><a href="/2013/06/09/qualcomm-device使用ion-memory-manager取代pmem/">6月 9 2013</a></time>
+      
+      
+  
+    <h1 class="title">Qualcomm device使用ION memory manager取代PMEM</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天写好device,成功编译出CM,接下来肯定是调戏啦(你什么都没看到)~<br>BUG肯定也是一堆堆的!一开机,果然一堆error~可是尼玛,大蛋一放假就不见人了!!!<br>我自己折腾几个小时容易么我,我谷歌了几个小时容易么我ヽ(｀д´)ﾉ  </p>
+<a name="more"></a>
+
+<pre><code><figure class="highlight"><pre><span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: D/memalloc(<span class="number">138</span>): init_pmem_area: Initializing pmem area
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: D/memalloc(<span class="number">138</span>): init_pmem_area_locked: Opening master pmem FD
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/memalloc(<span class="number">138</span>): <span class="regexp">/dev/</span>pmem: Failed to open pmem device: No such file or directory
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/memalloc(<span class="number">138</span>): <span class="regexp">/dev/</span>pmem: failed to initialize pmem area
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/gralloc(<span class="number">138</span>): gralloc failed err=No such file or directory
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: W/GraphicBufferAllocator(<span class="number">138</span>): WOW! gralloc alloc failed, waiting <span class="keyword">for</span> pending frees!
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/gralloc(<span class="number">138</span>): gralloc failed err=No such file or directory
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: W/GraphicBufferAllocator(<span class="number">138</span>): alloc(<span class="number">480</span>, <span class="number">800</span>, <span class="number">2</span>, <span class="number">00000</span>b03, ...) failed -<span class="number">2</span> (No such file or directory)
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/SurfaceFlinger(<span class="number">138</span>): GraphicBufferAlloc::createGraphicBuffer(w=<span class="number">480</span>, h=<span class="number">800</span>) failed (No such file or directory), handle=<span class="number">0x0</span>
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: E/BufferQueue(<span class="number">138</span>): [BootAnimation] dequeueBuffer: SurfaceComposer::createGraphicBuffer failed
+<span class="number">06</span>-<span class="number">09</span> <span class="number">17</span>:<span class="number">15</span>:<span class="number">48.570</span>: W/Adreno200-EGLSUB(<span class="number">412</span>): <span class="xml"><span class="tag">&lt;<span class="title">DequeueBuffer:420</span>&gt;</span>: dequeue native buffer fail: No such file or directory
+06-09 17:15:48.580: W/Adreno200-EGL(412): <span class="tag">&lt;<span class="title">qeglDrvAPI_eglMakeCurrent:2855</span>&gt;</span>: EGL_BAD_ALLOC
+06-09 17:15:48.580: E/libEGL(412): eglMakeCurrent:593 error 3003 (EGL_BAD_ALLOC)
+06-09 17:15:48.580: E/SurfaceFlinger(138): GL error 0x0505
+06-09 17:15:48.580: W/Adreno200-EGLSUB(138): <span class="tag">&lt;<span class="title">GetBackBuffer:2181</span>&gt;</span>: handle base address is NULL
+06-09 17:15:48.580: W/Adreno200-ES20(138): <span class="tag">&lt;<span class="title">gl2_surface_swap:43</span>&gt;</span>: GL_OUT_OF_MEMORY
+06-09 17:15:48.580: W/Adreno200-EGL(138): <span class="tag">&lt;<span class="title">qeglDrvAPI_eglSwapBuffers:3482</span>&gt;</span>: EGL_BAD_ALLOC</span>
+</pre></figure></code></pre>
+<p>上面就是错误信息啦,一眼看过去就看出了pmem驱动无法打开<br>What,为神马打不开啊???因为文件不存在啊,魂淡!<br>然后我就把kernel的config给提取出来看了下  </p>
+<pre><code><figure class="highlight"><pre><span class="variable">$ </span>adb pull /proc/config.gz
+<span class="number">245</span> <span class="constant">KB</span>/s (<span class="number">20151</span> bytes <span class="keyword">in</span> <span class="number">0</span>.080s)
+
+<span class="variable">$ </span>gunzip -c config.gz |grep <span class="constant">PMEM</span>
+<span class="constant">CONFIG_ANDROID_PMEM</span>=y
+</pre></figure></code></pre>
+<p>次奥,内核都开启了PMEM为神马还是不行啊!!!(つД`)<br>好吧,接着我就去看dmesg,看看到底是神马回事...  </p>
+<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">6</span>&gt;</span>[    2.445319] loop: module loaded
+<span class="tag">&lt;<span class="title">1</span>&gt;</span>[    2.447678] pmem: pmem_setup: unable to register pmem driver(pmem) - zero size passed in!
+<span class="tag">&lt;<span class="title">4</span>&gt;</span>[    2.455961] android_pmem: probe of android_pmem.0 failed with error -1
+<span class="tag">&lt;<span class="title">1</span>&gt;</span>[    2.462321] pmem: pmem_setup: unable to register pmem driver(pmem_adsp) - zero size passed in!
+<span class="tag">&lt;<span class="title">4</span>&gt;</span>[    2.471003] android_pmem: probe of android_pmem.1 failed with error -1
+<span class="tag">&lt;<span class="title">1</span>&gt;</span>[    2.477379] pmem: pmem_setup: unable to register pmem driver(pmem_audio) - zero size passed in!
+<span class="tag">&lt;<span class="title">4</span>&gt;</span>[    2.486199] android_pmem: probe of android_pmem.2 failed with error -1
+</pre></figure></code></pre>
+<p>好吧,pmem都起不来了,怪不得找不到驱动...<br>个人感觉那货需要从内核源码搞了,但是没有源码啊,肿么破???<br>那俺就只好用ION取代PMEM了,pougai!!!!  </p>
+<p>打开device/{manufacturer}/{device}/BoardConfig.mk,添加下面的代码  </p>
+<pre><code><figure class="highlight"><pre><span class="comment"># Uses ION memory manager,Renounce the use of PMEM</span>
+<span class="title">TARGET_USES_ION</span> := <span class="built_in">true</span>
+</pre></figure></code></pre>
+<p>然后重新编译,你也可以用mmm单独编译模块~<br>刷进手机,重启,看log!!欧耶,这个BUG没有了,但是剩下的BUG还有一堆堆...</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Android/">Android</a>
+  </div>
+
+        <!--
+
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+-->
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"gentlemanmod"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:gentlemanmod.github.io/">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android/" style="font-size: 18.00px;">Android</a><a href="/tags/Linux/" style="font-size: 12.00px;">Linux</a><a href="/tags/MTK/" style="font-size: 10.00px;">MTK</a><a href="/tags/hexo/" style="font-size: 16.00px;">hexo</a><a href="/tags/反编译/" style="font-size: 14.00px;">反编译</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/06/29/任务管理界面添加显示ram信息/">任务管理界面添加显示RAM信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/mtk机子修复分区信息/">MTK机子修复分区信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/16/转换framebuffer实现安卓截图/">转换framebuffer实现安卓截图</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/15/android去除屏幕红框/">Android去除屏幕红框</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/09/qualcomm-device使用ion-memory-manager取代pmem/">Qualcomm device使用ION memory manager取代PMEM</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">联系我</h3>
+  <ul class="entry">
+      <li>Gmail: GentlemanMod@gmail.com</li>
+      <li>QQ: 2292421148</li>
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">朋友们</h3>
+  <ul class="entry">
+      <li>
+        <a href="http://flau.me" target="_blank">芦苇丛的鹅蛋</a>
+      </li>
+  </ul>
+</div>
+
+  <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2532112564&verifier=ff61d30e&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 GentlemanMod
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

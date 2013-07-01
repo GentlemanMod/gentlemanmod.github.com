@@ -3,13 +3,63 @@
   <title><![CDATA[绅士的幻想乡]]></title>
   <link href="http://gentlemanmod.github.io//atom.xml" rel="self"/>
   <link href="http://gentlemanmod.github.io/"/>
-  <updated>2013-06-29T13:09:48.293Z</updated>
+  <updated>2013-07-01T05:37:11.293Z</updated>
   <id>http://gentlemanmod.github.io//</id>
   <author>
     <name><![CDATA[GentlemanMod]]></name>
     <email><![CDATA[GentlemanMod@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[解决Unable to resolve superclass的问题]]></title>
+    <link href="http://gentlemanmod.github.io//2013/07/01/解决unable-to-resolve-superclass的问题/"/>
+    <id>http://gentlemanmod.github.io//2013/07/01/解决unable-to-resolve-superclass的问题/</id>
+    <published>2013-07-01T05:20:39.000Z</published>
+    <updated>2013-07-01T05:36:49.000Z</updated>
+    <content type="html"><![CDATA[<p>之前在GITHUB上看到大蛋的高级设置,昨晚于是就拿来编译..<br>结果真是个悲伤的故事,放手机上居然运行不了,这种时候只能看LOG了!<br>看LOG得出的信息如下:  </p>
+<a name="more"></a>
+
+<pre><code><figure class="highlight"><pre><span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.438</span>: D/dalvikvm(<span class="number">2286</span>): threadid=<span class="number">10</span>: interp stack <span class="keyword">at</span> <span class="number">0x5d2bb000</span>
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.438</span>: D/jdwp(<span class="number">2286</span>): sendBufferedRequest : len=<span class="number">0x2B</span>
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.455</span>: E/Trace(<span class="number">2286</span>): <span class="keyword">error</span> opening trace <span class="type">file</span>: No such <span class="type">file</span> <span class="keyword">or</span> directory (<span class="number">2</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.457</span>: D/jdwp(<span class="number">2286</span>): sendBufferedRequest : len=<span class="number">0x45</span>
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.470</span>: D/dalvikvm(<span class="number">2286</span>): open_cached_dex_file : /data/app/com.focus.advsettings-<span class="number">1.</span>apk /data/dalvik-cache/data@app@com.focus.advsettings-<span class="number">1.</span>apk@classes.dex
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.473</span>: W/dalvikvm(<span class="number">2286</span>): Unable <span class="keyword">to</span> resolve superclass <span class="keyword">of</span> Lcom/android/settings/focus/DeviceSettings; (<span class="number">47</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.473</span>: W/dalvikvm(<span class="number">2286</span>): Link <span class="keyword">of</span> <span class="type">class</span> 'Lcom/android/settings/focus/DeviceSettings;' failed
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.474</span>: D/AndroidRuntime(<span class="number">2286</span>): Shutting down VM
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.475</span>: W/dalvikvm(<span class="number">2286</span>): threadid=<span class="number">1</span>: thread exiting <span class="keyword">with</span> uncaught exception (group=<span class="number">0x412d69f0</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>): FATAL EXCEPTION: main
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>): java.lang.RuntimeException: Unable <span class="keyword">to</span> instantiate activity ComponentInfo{com.focus.advsettings/com.android.settings.focus.DeviceSettings}: java.lang.ClassNotFoundException: Didn't find <span class="type">class</span> <span class="string">"com.android.settings.focus.DeviceSettings"</span> <span class="function_start"><span class="keyword">on</span> <span class="title">path</span></span>: DexPathList[dexElements=[zip <span class="type">file</span> <span class="string">"/data/app/com.focus.advsettings-1.apk"</span>],nativeLibraryDirectories=[/data/app-lib/com.focus.advsettings-<span class="number">1</span>, /vendor/lib, /system/lib]]
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.performLaunchActivity(ActivityThread.java:<span class="number">2236</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:<span class="number">2362</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.access$<span class="number">600</span>(ActivityThread.java:<span class="number">160</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread$H.handleMessage(ActivityThread.java:<span class="number">1344</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.os.Handler.dispatchMessage(Handler.java:<span class="number">99</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.os.Looper.loop(Looper.java:<span class="number">153</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.main(ActivityThread.java:<span class="number">5317</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> java.lang.reflect.Method.invokeNative(Native Method)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> java.lang.reflect.Method.invoke(Method.java:<span class="number">511</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> com.android.internal.os.ZygoteInit$MethodAndArgsCaller.<span class="command">run</span>(ZygoteInit.java:<span class="number">833</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> com.android.internal.os.ZygoteInit.main(ZygoteInit.java:<span class="number">600</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> dalvik.system.NativeStart.main(Native Method)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>): Caused <span class="keyword">by</span>: java.lang.ClassNotFoundException: Didn't find <span class="type">class</span> <span class="string">"com.android.settings.focus.DeviceSettings"</span> <span class="function_start"><span class="keyword">on</span> <span class="title">path</span></span>: DexPathList[dexElements=[zip <span class="type">file</span> <span class="string">"/data/app/com.focus.advsettings-1.apk"</span>],nativeLibraryDirectories=[/data/app-lib/com.focus.advsettings-<span class="number">1</span>, /vendor/lib, /system/lib]]
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:<span class="number">53</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> java.lang.ClassLoader.loadClass(ClassLoader.java:<span class="number">501</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> java.lang.ClassLoader.loadClass(ClassLoader.java:<span class="number">461</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.Instrumentation.newActivity(Instrumentation.java:<span class="number">1054</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.performLaunchActivity(ActivityThread.java:<span class="number">2227</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        ... <span class="number">11</span> more
+</pre></figure></code></pre>
+<p>接着谷歌后才知道ADT 17以上如果引用Jar文件就需要放在libs目录上...<br>可是大蛋已经放好了啊.我就奇怪了~这尼玛是神马回事!!<br>琢磨了一番后才发现我没有勾上编译libs目录的选项!233333<br>开启的具体步骤如下:</p>
+<pre><code><figure class="highlight"><pre><span class="bullet">1. </span>右键项目,选择属性
+<span class="bullet">2. </span>Java Build Patch -&gt; Order and Export
+<span class="bullet">3. </span>勾上 Android Private Libraries
+<span class="bullet">4. </span>重新编译即可
+</pre></figure></code></pre>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+    <category scheme="http://gentlemanmod.github.io//tags/程序开发/" term="程序开发"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[任务管理界面添加显示RAM信息]]></title>
     <link href="http://gentlemanmod.github.io//2013/06/29/任务管理界面添加显示ram信息/"/>

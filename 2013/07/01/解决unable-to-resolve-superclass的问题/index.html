@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解决Unable to resolve superclass的问题 | 绅士的幻想乡</title>
+  <meta name="author" content="GentlemanMod">
+  
+  <meta name="description" content="之前在GITHUB上看到大蛋的高级设置,昨晚于是就拿来编译..结果真是个悲伤的故事,放手机上居然运行不了,这种时候只能看LOG了!看LOG得出的信息如下:">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="解决Unable to resolve superclass的问题"/>
+  <meta property="og:site_name" content="绅士的幻想乡"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="stylesheet" type="text/css" href="/css/haruna.css">
+  <link rel="alternate" href="/atom.xml" title="绅士的幻想乡" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+  <script>var path = "http://gentlemanmod.github.io";var imagewidth = '240';var imageheight = '240';</script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/haruna.js" charset="gb2312" ></script>
+  <script>createFace("http://gentlemanmod.github.io/img/skin/ikamusume/1.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/2.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/3.gif");</script>
+  <script>var talkself_user = [ ["喔耶～加油！加油！加油！加油！", "2"],["主人现在老是弃旧迎新，朋友们都好伤心啊..", "3"],["对本博客有什么建议可以留言哦~", "2"],["哇啊啊啊啊啊啊啊啊啊...", "3"],["目前博客托管在github上，速度应该不错吧？", "1"],["一个域名居然要50多大洋..", "3"] ];var talkself_arr = talkself_arr.concat(talkself_user);</script>
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">绅士的幻想乡</a></h1>
+  <h2><a href="/"></a></h2>
+  <h2><a href="/"><script>hitokoto()</script></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li><a href="/atom.xml">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-01T05:20:39.000Z"><a href="/2013/07/01/解决unable-to-resolve-superclass的问题/">7月 1 2013</a></time>
+      
+      
+  
+    <h1 class="title">解决Unable to resolve superclass的问题</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>之前在GITHUB上看到大蛋的高级设置,昨晚于是就拿来编译..<br>结果真是个悲伤的故事,放手机上居然运行不了,这种时候只能看LOG了!<br>看LOG得出的信息如下:  </p>
+<a name="more"></a>
+
+<pre><code><figure class="highlight"><pre><span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.438</span>: D/dalvikvm(<span class="number">2286</span>): threadid=<span class="number">10</span>: interp stack <span class="keyword">at</span> <span class="number">0x5d2bb000</span>
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.438</span>: D/jdwp(<span class="number">2286</span>): sendBufferedRequest : len=<span class="number">0x2B</span>
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.455</span>: E/Trace(<span class="number">2286</span>): <span class="keyword">error</span> opening trace <span class="type">file</span>: No such <span class="type">file</span> <span class="keyword">or</span> directory (<span class="number">2</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.457</span>: D/jdwp(<span class="number">2286</span>): sendBufferedRequest : len=<span class="number">0x45</span>
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.470</span>: D/dalvikvm(<span class="number">2286</span>): open_cached_dex_file : /data/app/com.focus.advsettings-<span class="number">1.</span>apk /data/dalvik-cache/data@app@com.focus.advsettings-<span class="number">1.</span>apk@classes.dex
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.473</span>: W/dalvikvm(<span class="number">2286</span>): Unable <span class="keyword">to</span> resolve superclass <span class="keyword">of</span> Lcom/android/settings/focus/DeviceSettings; (<span class="number">47</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.473</span>: W/dalvikvm(<span class="number">2286</span>): Link <span class="keyword">of</span> <span class="type">class</span> 'Lcom/android/settings/focus/DeviceSettings;' failed
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.474</span>: D/AndroidRuntime(<span class="number">2286</span>): Shutting down VM
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.475</span>: W/dalvikvm(<span class="number">2286</span>): threadid=<span class="number">1</span>: thread exiting <span class="keyword">with</span> uncaught exception (group=<span class="number">0x412d69f0</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>): FATAL EXCEPTION: main
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>): java.lang.RuntimeException: Unable <span class="keyword">to</span> instantiate activity ComponentInfo{com.focus.advsettings/com.android.settings.focus.DeviceSettings}: java.lang.ClassNotFoundException: Didn't find <span class="type">class</span> <span class="string">"com.android.settings.focus.DeviceSettings"</span> <span class="function_start"><span class="keyword">on</span> <span class="title">path</span></span>: DexPathList[dexElements=[zip <span class="type">file</span> <span class="string">"/data/app/com.focus.advsettings-1.apk"</span>],nativeLibraryDirectories=[/data/app-lib/com.focus.advsettings-<span class="number">1</span>, /vendor/lib, /system/lib]]
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.performLaunchActivity(ActivityThread.java:<span class="number">2236</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:<span class="number">2362</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.access$<span class="number">600</span>(ActivityThread.java:<span class="number">160</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread$H.handleMessage(ActivityThread.java:<span class="number">1344</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.os.Handler.dispatchMessage(Handler.java:<span class="number">99</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.os.Looper.loop(Looper.java:<span class="number">153</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.main(ActivityThread.java:<span class="number">5317</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> java.lang.reflect.Method.invokeNative(Native Method)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> java.lang.reflect.Method.invoke(Method.java:<span class="number">511</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> com.android.internal.os.ZygoteInit$MethodAndArgsCaller.<span class="command">run</span>(ZygoteInit.java:<span class="number">833</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> com.android.internal.os.ZygoteInit.main(ZygoteInit.java:<span class="number">600</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> dalvik.system.NativeStart.main(Native Method)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>): Caused <span class="keyword">by</span>: java.lang.ClassNotFoundException: Didn't find <span class="type">class</span> <span class="string">"com.android.settings.focus.DeviceSettings"</span> <span class="function_start"><span class="keyword">on</span> <span class="title">path</span></span>: DexPathList[dexElements=[zip <span class="type">file</span> <span class="string">"/data/app/com.focus.advsettings-1.apk"</span>],nativeLibraryDirectories=[/data/app-lib/com.focus.advsettings-<span class="number">1</span>, /vendor/lib, /system/lib]]
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:<span class="number">53</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> java.lang.ClassLoader.loadClass(ClassLoader.java:<span class="number">501</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> java.lang.ClassLoader.loadClass(ClassLoader.java:<span class="number">461</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.Instrumentation.newActivity(Instrumentation.java:<span class="number">1054</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        <span class="keyword">at</span> android.app.ActivityThread.performLaunchActivity(ActivityThread.java:<span class="number">2227</span>)
+<span class="number">07</span>-<span class="number">01</span> <span class="number">13</span>:<span class="number">35</span>:<span class="number">47.477</span>: E/AndroidRuntime(<span class="number">2286</span>):        ... <span class="number">11</span> more
+</pre></figure></code></pre>
+<p>接着谷歌后才知道ADT 17以上如果引用Jar文件就需要放在libs目录上...<br>可是大蛋已经放好了啊.我就奇怪了~这尼玛是神马回事!!<br>琢磨了一番后才发现我没有勾上编译libs目录的选项!233333<br>开启的具体步骤如下:</p>
+<pre><code><figure class="highlight"><pre><span class="bullet">1. </span>右键项目,选择属性
+<span class="bullet">2. </span>Java Build Patch -&gt; Order and Export
+<span class="bullet">3. </span>勾上 Android Private Libraries
+<span class="bullet">4. </span>重新编译即可
+</pre></figure></code></pre>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Android/">Android</a>, <a href="/tags/程序开发/">程序开发</a>
+  </div>
+
+        <!--
+
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+-->
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"gentlemanmod"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:gentlemanmod.github.io/">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android/" style="font-size: 18.33px;">Android</a><a href="/tags/Linux/" style="font-size: 15.00px;">Linux</a><a href="/tags/MTK/" style="font-size: 11.67px;">MTK</a><a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a><a href="/tags/反编译/" style="font-size: 10.00px;">反编译</a><a href="/tags/程序开发/" style="font-size: 16.67px;">程序开发</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/07/01/解决unable-to-resolve-superclass的问题/">解决Unable to resolve superclass的问题</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/任务管理界面添加显示ram信息/">任务管理界面添加显示RAM信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/mtk机子修复分区信息/">MTK机子修复分区信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/16/转换framebuffer实现安卓截图/">转换framebuffer实现安卓截图</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/15/android去除屏幕红框/">Android去除屏幕红框</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">联系我</h3>
+  <ul class="entry">
+      <li>Gmail: GentlemanMod@gmail.com</li>
+      <li>QQ: 2292421148</li>
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">朋友们</h3>
+  <ul class="entry">
+      <li>
+        <a href="http://flau.me" target="_blank">芦苇丛的鹅蛋</a>
+      </li>
+  </ul>
+</div>
+
+  <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2532112564&verifier=ff61d30e&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 GentlemanMod
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

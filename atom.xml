@@ -3,7 +3,7 @@
   <title><![CDATA[绅士的幻想乡]]></title>
   <link href="http://gentlemanmod.github.io//atom.xml" rel="self"/>
   <link href="http://gentlemanmod.github.io/"/>
-  <updated>2013-07-02T05:16:39.161Z</updated>
+  <updated>2013-07-02T06:41:54.378Z</updated>
   <id>http://gentlemanmod.github.io//</id>
   <author>
     <name><![CDATA[GentlemanMod]]></name>
@@ -65,7 +65,7 @@
     <link href="http://gentlemanmod.github.io//2013/06/29/任务管理界面添加显示ram信息/"/>
     <id>http://gentlemanmod.github.io//2013/06/29/任务管理界面添加显示ram信息/</id>
     <published>2013-06-29T12:33:37.000Z</published>
-    <updated>2013-07-02T05:16:32.000Z</updated>
+    <updated>2013-07-02T06:41:45.000Z</updated>
     <content type="html"><![CDATA[<p>显示RAM信息的核心代码是大蛋的,我只不过是整理下教程而已!<br>大蛋应该不会介意的吧,首先你需要apktool和SystemUI.apk,framework-res.apk<br>然后开始加载框架和反编译...  </p>
 <a name="more"></a>
 
@@ -79,7 +79,7 @@
 <span class="title">memory_info_cached</span>
 <span class="title">memory_info_swapcached</span>
 </pre></figure></code></pre>
-<p>然后也在res/values/ids.xml也加入上面的ID<br>最后修改smali/com/android/systemui/recent/MemoryInfo.smali里的ID为你增加的对应ID即可!<br>接着在布局文件res/layout-land/status_bar_recent_panel.xml加入以下内容  </p>
+<p>然后也在res/values/ids.xml也加入上面的ID<br>最后修改smali/com/android/systemui/recent/MemoryInfoLayout.smali里的ID为你增加的对应ID即可!<br>接着在布局文件res/layout-land/status_bar_recent_panel.xml加入以下内容  </p>
 <pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">com.android.systemui.recent.MemoryInfoLayout</span> <span class="attribute">android:gravity</span>=<span class="value">"center_vertical"</span> <span class="attribute">android:layout_gravity</span>=<span class="value">"bottom"</span> <span class="attribute">android:clickable</span>=<span class="value">"true"</span> <span class="attribute">android:layout_width</span>=<span class="value">"fill_parent"</span> <span class="attribute">android:layout_height</span>=<span class="value">"30.0dip"</span>&gt;</span>
     <span class="tag">&lt;<span class="title">View</span> <span class="attribute">android:visibility</span>=<span class="value">"invisible"</span> <span class="attribute">android:layout_width</span>=<span class="value">"5.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"fill_parent"</span> /&gt;</span>
     <span class="tag">&lt;<span class="title">ImageView</span> <span class="attribute">android:background</span>=<span class="value">"#ff04ff11"</span> <span class="attribute">android:layout_width</span>=<span class="value">"12.0dip"</span> <span class="attribute">android:layout_height</span>=<span class="value">"12.0dip"</span> /&gt;</span>

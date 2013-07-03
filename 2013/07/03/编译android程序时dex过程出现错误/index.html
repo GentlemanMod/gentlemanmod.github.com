@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>编译android程序时DEX过程出现错误 | 绅士的幻想乡</title>
+  <meta name="author" content="GentlemanMod">
+  
+  <meta name="description" content="今天编译高级设置时出现了错误,这好坑爹啊~于是我开始检查代码,发现代码没有错误啊,然后观察MAKE的步骤才发现是DEX时出现了问题!!下面是错误的LOG:">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="编译android程序时DEX过程出现错误"/>
+  <meta property="og:site_name" content="绅士的幻想乡"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="stylesheet" type="text/css" href="/css/haruna.css">
+  <link rel="alternate" href="/atom.xml" title="绅士的幻想乡" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
+  <script>var path = "http://gentlemanmod.github.io";var imagewidth = '240';var imageheight = '240';</script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/haruna.js" charset="gb2312" ></script>
+  <script>createFace("http://gentlemanmod.github.io/img/skin/ikamusume/1.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/2.gif", "http://gentlemanmod.github.io/img/skin/ikamusume/3.gif");</script>
+  <script>var talkself_user = [ ["喔耶～加油！加油！加油！加油！", "2"],["主人现在老是弃旧迎新，朋友们都好伤心啊..", "3"],["对本博客有什么建议可以留言哦~", "2"],["哇啊啊啊啊啊啊啊啊啊...", "3"],["目前博客托管在github上，速度应该不错吧？", "1"],["一个域名居然要50多大洋..", "3"] ];var talkself_arr = talkself_arr.concat(talkself_user);</script>
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">绅士的幻想乡</a></h1>
+  <h2><a href="/"></a></h2>
+  <h2><a href="/"><script>hitokoto()</script></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">主页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li><a href="/atom.xml">RSS</a></li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-03T15:57:27.000Z"><a href="/2013/07/03/编译android程序时dex过程出现错误/">7月 3 2013</a></time>
+      
+      
+  
+    <h1 class="title">编译android程序时DEX过程出现错误</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天编译高级设置时出现了错误,这好坑爹啊~<br>于是我开始检查代码,发现代码没有错误啊,然后观察MAKE的步骤才发现是DEX时出现了问题!!<br>下面是错误的LOG:  </p>
+<a name="more"></a>
+
+<pre><code><figure class="highlight"><pre><span class="label">Information:</span>Using javac <span class="number">1.7</span><span class="number">.0</span>_25 to compile java sources
+<span class="label">Information:</span>Module <span class="string">"AdvanceSettings"</span> was fully rebuilt due to project configuration/dependencies changes
+<span class="label">Information:</span>Compilation completed with <span class="number">22</span> errors <span class="keyword">and</span> <span class="number">0</span> warnings <span class="keyword">in</span> <span class="number">17</span> <span class="keyword">sec</span>
+<span class="label">Information:</span><span class="number">22</span> errors
+<span class="label">Information:</span><span class="number">0</span> warnings
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] UNEXPECTED TOP-LEVEL EXCEPTION:
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] java<span class="preprocessor">.lang</span><span class="preprocessor">.IllegalArgumentException</span>: already added: Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat<span class="comment">;</span>
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.dex</span><span class="preprocessor">.file</span><span class="preprocessor">.ClassDefsSection</span><span class="preprocessor">.add</span>(ClassDefsSection<span class="preprocessor">.java</span>:<span class="number">123</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.dex</span><span class="preprocessor">.file</span><span class="preprocessor">.DexFile</span><span class="preprocessor">.add</span>(DexFile<span class="preprocessor">.java</span>:<span class="number">163</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.processClass</span>(Main<span class="preprocessor">.java</span>:<span class="number">490</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.processFileBytes</span>(Main<span class="preprocessor">.java</span>:<span class="number">459</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.access</span>$400(Main<span class="preprocessor">.java</span>:<span class="number">67</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span>$1<span class="preprocessor">.processFileBytes</span>(Main<span class="preprocessor">.java</span>:<span class="number">398</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.cf</span><span class="preprocessor">.direct</span><span class="preprocessor">.ClassPathOpener</span><span class="preprocessor">.processArchive</span>(ClassPathOpener<span class="preprocessor">.java</span>:<span class="number">245</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.cf</span><span class="preprocessor">.direct</span><span class="preprocessor">.ClassPathOpener</span><span class="preprocessor">.processOne</span>(ClassPathOpener<span class="preprocessor">.java</span>:<span class="number">131</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.cf</span><span class="preprocessor">.direct</span><span class="preprocessor">.ClassPathOpener</span><span class="preprocessor">.process</span>(ClassPathOpener<span class="preprocessor">.java</span>:<span class="number">109</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.processOne</span>(Main<span class="preprocessor">.java</span>:<span class="number">422</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.processAllFiles</span>(Main<span class="preprocessor">.java</span>:<span class="number">333</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.run</span>(Main<span class="preprocessor">.java</span>:<span class="number">209</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at sun<span class="preprocessor">.reflect</span><span class="preprocessor">.NativeMethodAccessorImpl</span><span class="preprocessor">.invoke</span>0(Native Method)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at sun<span class="preprocessor">.reflect</span><span class="preprocessor">.NativeMethodAccessorImpl</span><span class="preprocessor">.invoke</span>(NativeMethodAccessorImpl<span class="preprocessor">.java</span>:<span class="number">57</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at sun<span class="preprocessor">.reflect</span><span class="preprocessor">.DelegatingMethodAccessorImpl</span><span class="preprocessor">.invoke</span>(DelegatingMethodAccessorImpl<span class="preprocessor">.java</span>:<span class="number">43</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at java<span class="preprocessor">.lang</span><span class="preprocessor">.reflect</span><span class="preprocessor">.Method</span><span class="preprocessor">.invoke</span>(Method<span class="preprocessor">.java</span>:<span class="number">606</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at org<span class="preprocessor">.jetbrains</span><span class="preprocessor">.android</span><span class="preprocessor">.compiler</span><span class="preprocessor">.tools</span><span class="preprocessor">.AndroidDxRunner</span><span class="preprocessor">.runDex</span>(AndroidDxRunner<span class="preprocessor">.java</span>:<span class="number">139</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at org<span class="preprocessor">.jetbrains</span><span class="preprocessor">.android</span><span class="preprocessor">.compiler</span><span class="preprocessor">.tools</span><span class="preprocessor">.AndroidDxRunner</span><span class="preprocessor">.main</span>(AndroidDxRunner<span class="preprocessor">.java</span>:<span class="number">261</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.intellij</span><span class="preprocessor">.rt</span><span class="preprocessor">.execution</span><span class="preprocessor">.CommandLineWrapper</span><span class="preprocessor">.main</span>(CommandLineWrapper<span class="preprocessor">.java</span>:<span class="number">121</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] <span class="number">1</span> error<span class="comment">; aborting</span>
+</pre></figure></code></pre>
+<p>于是我就去谷歌,得出:因为有重复的包添加了,只要把重复的包从BuildPath中移除就行了..<br>我就去看了下BuildPath,发现有两个外部jar,一个是android-support-v13.jar,还有一个是android-support-v4.jar<br>然后我把android-support-v4.jar给移除,重新编译!!!欧耶,一次通过~~~</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Android/">Android</a>, <a href="/tags/程序开发/">程序开发</a>
+  </div>
+
+        <!--
+
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+-->
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"gentlemanmod"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:gentlemanmod.github.io/">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Android/" style="font-size: 18.33px;">Android</a><a href="/tags/Linux/" style="font-size: 15.00px;">Linux</a><a href="/tags/MTK/" style="font-size: 11.67px;">MTK</a><a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a><a href="/tags/反编译/" style="font-size: 10.00px;">反编译</a><a href="/tags/程序开发/" style="font-size: 16.67px;">程序开发</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2013/07/03/编译android程序时dex过程出现错误/">编译android程序时DEX过程出现错误</a>
+      </li>
+    
+      <li>
+        <a href="/2013/07/01/解决unable-to-resolve-superclass的问题/">解决Unable to resolve superclass的问题</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/任务管理界面添加显示ram信息/">任务管理界面添加显示RAM信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/29/mtk机子修复分区信息/">MTK机子修复分区信息</a>
+      </li>
+    
+      <li>
+        <a href="/2013/06/16/转换framebuffer实现安卓截图/">转换framebuffer实现安卓截图</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">联系我</h3>
+  <ul class="entry">
+      <li>Gmail: GentlemanMod@gmail.com</li>
+      <li>QQ: 2292421148</li>
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">朋友们</h3>
+  <ul class="entry">
+      <li>
+        <a href="http://flau.me" target="_blank">芦苇丛的鹅蛋</a>
+      </li>
+  </ul>
+</div>
+
+  <iframe width="100%" height="600" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=600&fansRow=1&ptype=1&speed=0&skin=5&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2532112564&verifier=ff61d30e&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 GentlemanMod
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://gentlemanmod.github.io//2013/07/03/编译android程序时dex过程出现错误/</loc>
+    <lastmod>2013-07-03T16:04:15.000Z</lastmod>
+  </url>
+  <url>
     <loc>http://gentlemanmod.github.io//2013/06/29/任务管理界面添加显示ram信息/</loc>
     <lastmod>2013-07-02T06:50:14.000Z</lastmod>
   </url>

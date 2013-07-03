@@ -3,13 +3,55 @@
   <title><![CDATA[绅士的幻想乡]]></title>
   <link href="http://gentlemanmod.github.io//atom.xml" rel="self"/>
   <link href="http://gentlemanmod.github.io/"/>
-  <updated>2013-07-02T06:50:18.870Z</updated>
+  <updated>2013-07-03T16:04:20.394Z</updated>
   <id>http://gentlemanmod.github.io//</id>
   <author>
     <name><![CDATA[GentlemanMod]]></name>
     <email><![CDATA[GentlemanMod@gmail.com]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[编译android程序时DEX过程出现错误]]></title>
+    <link href="http://gentlemanmod.github.io//2013/07/03/编译android程序时dex过程出现错误/"/>
+    <id>http://gentlemanmod.github.io//2013/07/03/编译android程序时dex过程出现错误/</id>
+    <published>2013-07-03T15:57:27.000Z</published>
+    <updated>2013-07-03T16:04:15.000Z</updated>
+    <content type="html"><![CDATA[<p>今天编译高级设置时出现了错误,这好坑爹啊~<br>于是我开始检查代码,发现代码没有错误啊,然后观察MAKE的步骤才发现是DEX时出现了问题!!<br>下面是错误的LOG:  </p>
+<a name="more"></a>
+
+<pre><code><figure class="highlight"><pre><span class="label">Information:</span>Using javac <span class="number">1.7</span><span class="number">.0</span>_25 to compile java sources
+<span class="label">Information:</span>Module <span class="string">"AdvanceSettings"</span> was fully rebuilt due to project configuration/dependencies changes
+<span class="label">Information:</span>Compilation completed with <span class="number">22</span> errors <span class="keyword">and</span> <span class="number">0</span> warnings <span class="keyword">in</span> <span class="number">17</span> <span class="keyword">sec</span>
+<span class="label">Information:</span><span class="number">22</span> errors
+<span class="label">Information:</span><span class="number">0</span> warnings
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] UNEXPECTED TOP-LEVEL EXCEPTION:
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] java<span class="preprocessor">.lang</span><span class="preprocessor">.IllegalArgumentException</span>: already added: Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat<span class="comment">;</span>
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.dex</span><span class="preprocessor">.file</span><span class="preprocessor">.ClassDefsSection</span><span class="preprocessor">.add</span>(ClassDefsSection<span class="preprocessor">.java</span>:<span class="number">123</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.dex</span><span class="preprocessor">.file</span><span class="preprocessor">.DexFile</span><span class="preprocessor">.add</span>(DexFile<span class="preprocessor">.java</span>:<span class="number">163</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.processClass</span>(Main<span class="preprocessor">.java</span>:<span class="number">490</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.processFileBytes</span>(Main<span class="preprocessor">.java</span>:<span class="number">459</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.access</span>$400(Main<span class="preprocessor">.java</span>:<span class="number">67</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span>$1<span class="preprocessor">.processFileBytes</span>(Main<span class="preprocessor">.java</span>:<span class="number">398</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.cf</span><span class="preprocessor">.direct</span><span class="preprocessor">.ClassPathOpener</span><span class="preprocessor">.processArchive</span>(ClassPathOpener<span class="preprocessor">.java</span>:<span class="number">245</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.cf</span><span class="preprocessor">.direct</span><span class="preprocessor">.ClassPathOpener</span><span class="preprocessor">.processOne</span>(ClassPathOpener<span class="preprocessor">.java</span>:<span class="number">131</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.cf</span><span class="preprocessor">.direct</span><span class="preprocessor">.ClassPathOpener</span><span class="preprocessor">.process</span>(ClassPathOpener<span class="preprocessor">.java</span>:<span class="number">109</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.processOne</span>(Main<span class="preprocessor">.java</span>:<span class="number">422</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.processAllFiles</span>(Main<span class="preprocessor">.java</span>:<span class="number">333</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.android</span><span class="preprocessor">.dx</span><span class="preprocessor">.command</span><span class="preprocessor">.dexer</span><span class="preprocessor">.Main</span><span class="preprocessor">.run</span>(Main<span class="preprocessor">.java</span>:<span class="number">209</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at sun<span class="preprocessor">.reflect</span><span class="preprocessor">.NativeMethodAccessorImpl</span><span class="preprocessor">.invoke</span>0(Native Method)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at sun<span class="preprocessor">.reflect</span><span class="preprocessor">.NativeMethodAccessorImpl</span><span class="preprocessor">.invoke</span>(NativeMethodAccessorImpl<span class="preprocessor">.java</span>:<span class="number">57</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at sun<span class="preprocessor">.reflect</span><span class="preprocessor">.DelegatingMethodAccessorImpl</span><span class="preprocessor">.invoke</span>(DelegatingMethodAccessorImpl<span class="preprocessor">.java</span>:<span class="number">43</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at java<span class="preprocessor">.lang</span><span class="preprocessor">.reflect</span><span class="preprocessor">.Method</span><span class="preprocessor">.invoke</span>(Method<span class="preprocessor">.java</span>:<span class="number">606</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at org<span class="preprocessor">.jetbrains</span><span class="preprocessor">.android</span><span class="preprocessor">.compiler</span><span class="preprocessor">.tools</span><span class="preprocessor">.AndroidDxRunner</span><span class="preprocessor">.runDex</span>(AndroidDxRunner<span class="preprocessor">.java</span>:<span class="number">139</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at org<span class="preprocessor">.jetbrains</span><span class="preprocessor">.android</span><span class="preprocessor">.compiler</span><span class="preprocessor">.tools</span><span class="preprocessor">.AndroidDxRunner</span><span class="preprocessor">.main</span>(AndroidDxRunner<span class="preprocessor">.java</span>:<span class="number">261</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] at <span class="keyword">com</span><span class="preprocessor">.intellij</span><span class="preprocessor">.rt</span><span class="preprocessor">.execution</span><span class="preprocessor">.CommandLineWrapper</span><span class="preprocessor">.main</span>(CommandLineWrapper<span class="preprocessor">.java</span>:<span class="number">121</span>)
+<span class="label">Error:</span>Android Dex: [AdvanceSettings] <span class="number">1</span> error<span class="comment">; aborting</span>
+</pre></figure></code></pre>
+<p>于是我就去谷歌,得出:因为有重复的包添加了,只要把重复的包从BuildPath中移除就行了..<br>我就去看了下BuildPath,发现有两个外部jar,一个是android-support-v13.jar,还有一个是android-support-v4.jar<br>然后我把android-support-v4.jar给移除,重新编译!!!欧耶,一次通过~~~</p>
+]]></content>
+    <category scheme="http://gentlemanmod.github.io//tags/Android/" term="Android"/>
+    <category scheme="http://gentlemanmod.github.io//tags/程序开发/" term="程序开发"/>
+  </entry>
   <entry>
     <title type="html"><![CDATA[解决Unable to resolve superclass的问题]]></title>
     <link href="http://gentlemanmod.github.io//2013/07/01/解决unable-to-resolve-superclass的问题/"/>
